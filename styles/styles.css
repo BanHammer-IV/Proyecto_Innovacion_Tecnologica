@@ -1,8 +1,33 @@
 *{
     margin: 0px;
     padding: 0px;
+    font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
 }
 
 body{
     background-color: #65A6EB;
+}
+
+.cabecera
+{
+    width: 90%;
+    height: 64px;
+    background-color: #002570;
+    margin-top: 20px;
+    margin-left: 5%;
+    border-radius: 16px;
+}
+
+.IcoShop
+{
+    width: 50px;
+    height: 80px;
+    color: rgb(146, 20, 20);
+    background-color: transparent;
+}
+
+.btnShop
+{
+    background-color: transparent;
+    border-color: transparent;
 }
