@@ -61,3 +61,15 @@ body{
 {
     margin: 10px;
 }
+
+.columnas
+{
+    display: grid;
+    grid-template-columns: auto auto auto auto auto auto;
+}
+
+.Titulo
+{
+    text-align: center;
+    margin-top: 20px;
+}

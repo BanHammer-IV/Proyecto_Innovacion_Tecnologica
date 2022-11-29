@@ -5,27 +5,41 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <link rel="stylesheet" href="styles/styles.css">
+    <script type="text/javascript" src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.0/jquery.min.js"></script>
+    <script src="Catalogos.js"></script>
     <title>Inicio</title>
 </head>
 <header class="cabecera">
-    <button class="btnCabecera">Inicio</button>
-    <button class="btnCabecera">Cobrar</button>
-    <button class="btnCabecera">Mensajes</button>
-    <button class="btnCabecera">Iniciar sesion</button>
-    <button class="btnCabecera">Registrarse</button>
+    <div class="columnas">
+        <div class="tienda">
+            <button class="btnCabecera">Inicio</button>
+            <button class="btnCabecera" onclick="AccesoCatalogo()">Catologos</button>
+            <button class="btnCabecera" onclick="AccesoVentas()">ventas</button>
+            <button class="btnCabecera" onclick="AccesoCompras()">compras</button>
+        </div>
+        <div class="logger">
+            <button class="btnCabecera" onclick="AccesoInicioSesion()">Iniciar sesion</button>
+            <button class="btnCabecera" onclick="AccesoRegistroNuevo()">Registrarse</button>        
+        </div>
+        <button class="btnCabecera" onclick="obtenerID()">Prueba</button>
+    </div>
 </header>
 <body>
-    <div class="recuadroIzq">
-        <p class="texto">
-            What is Lorem Ipsum?<br>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum            
-        </p>
+    <div id="inicio">
+        <h2></h2>
+        <div class="recuadroIzq">
+            <p class="texto">
+                What is Lorem Ipsum?<br>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum            
+            </p>
+        </div>
+        <div class="recuadroDer">
+            <p class="texto">
+                What is Lorem Ipsum?<br>
+                Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum            
+            </p>
+        </div>    
     </div>
-    <div class="recuadroDer">
-        <p class="texto">
-            What is Lorem Ipsum?<br>
-            Lorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum            
-        </p>
-    </div>
+    <div id="creacion"></div>
 </body>
 </html>
