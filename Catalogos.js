@@ -17,7 +17,7 @@ function AccesoCatalogo()
     removedor();
     let textoh1 = document.createElement('h1');
     textoh1.innerText = "Catalogo de productos";
-    textoh1.setAttribute('Id', 'Catalogo');
+    textoh1.setAttribute('Id', 'inicio');
     textoh1.setAttribute('class', 'Titulo');
     document.body.appendChild(textoh1);
 }
@@ -28,7 +28,8 @@ function AccesoVentas()
     removedor();
     let textoh1 = document.createElement('h1');
     textoh1.innerText = "Ventas del usuario";
-    textoh1.setAttribute('Id', 'Ventas');
+    textoh1.setAttribute('Id', 'inicio');
+    textoh1.setAttribute('class', 'Titulo');
     document.body.appendChild(textoh1);
 }
 
@@ -39,6 +40,7 @@ function AccesoCompras()
     let textoh1 = document.createElement('h1');
     textoh1.innerText = "Compras del usuario";
     textoh1.setAttribute('Id', 'inicio');
+    textoh1.setAttribute('class', 'Titulo');
     document.body.appendChild(textoh1);
 }
 
@@ -49,6 +51,7 @@ function AccesoInicioSesion()
     let textoh1 = document.createElement('h1');
     textoh1.innerText = "Bienvenido";
     textoh1.setAttribute('Id', 'inicio');
+    textoh1.setAttribute('class', 'Titulo');
     document.body.appendChild(textoh1);
 }
 
@@ -56,14 +59,17 @@ function AccesoInicioSesion()
 function AccesoRegistroNuevo()
 {
     removedor();
+    let Registro = document.createElement('div');
     let textoh1 = document.createElement('h1');
     textoh1.innerText = "Registro";
     textoh1.setAttribute('Id', 'inicio');
-    document.body.appendChild(textoh1);
+    textoh1.setAttribute('class', 'Titulo');
+    document.body.appendChild(Registro);
 }
 
+//funcion para sacar el texto de la etiqueta
 function obtenerID()
 {
-    let obj = document.getElementById("Catalogo");
-    console.log(obj);
+    let opcion = document.getElementById("inicio").textContent;
+    console.log(opcion);
 }

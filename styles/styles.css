@@ -16,7 +16,6 @@ body{
     margin-top: 20px;
     margin-left: 5%;
     border-radius: 16px;
-    grid-template-columns: 5;
     text-align: center;
 }
 
@@ -66,10 +65,22 @@ body{
 {
     display: grid;
     grid-template-columns: auto auto auto auto auto auto;
+    width: 100%;
 }
 
 .Titulo
 {
     text-align: center;
     margin-top: 20px;
+} 
+
+.Tarjeta_Registro{
+    width: 350px;
+    height: 400px;
+    margin-left: 30%;
+    margin-top: 100px;
+    background-color: #96C5F8;
+    border-radius: 10px;
+    border-color: #032850;
+    border-style: solid;
 }
