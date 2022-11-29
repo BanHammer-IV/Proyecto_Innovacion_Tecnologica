@@ -50,7 +50,7 @@ body{
 {
     width: 42%;
     height: 100%;
-    margin-top: -50px;
+    margin-top: -300px;
     margin-left: 52%;
     border-radius: 10px;
     text-align: justify;
@@ -76,11 +76,49 @@ body{
 
 .Tarjeta_Registro{
     width: 350px;
-    height: 400px;
-    margin-left: 30%;
-    margin-top: 100px;
+    height: 100%;
+    margin-left: 35%;
+    margin-top: 50px;
+    margin-bottom: 20px;
     background-color: #96C5F8;
     border-radius: 10px;
     border-color: #032850;
     border-style: solid;
+}
+
+.inputForm
+{
+    background-color: #76b4f7;
+    border-style: solid;
+    border-bottom: solid;
+    margin-top: 30px;
+    margin-left: 6%;
+    border-top-color: transparent;
+    border-left: transparent;
+    border-right: transparent;
+    border-bottom-color: #002042;
+    border-top-left-radius: 4px;
+    border-top-right-radius: 4px;
+    width: 310px;
+    height: 30px;
+    font-size: large;
+}
+
+.inputForm::placeholder
+{
+    color: #003268;
+}
+
+.btnRegistro
+{
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 225px;
+    font-size: large;
+    background-color: #76b4f7;
+    border-style: solid;
+    border-color: #002042;
+    border-radius: 10px;
+    width: 30%;
+    height: 30px;
 }
