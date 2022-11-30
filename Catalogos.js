@@ -24,6 +24,7 @@ function InicioNoticias()
     Titulo.innerText = "Noticias";
     Titulo.setAttribute('class', 'Titulo');
 
+    /*
     // DIV - Texto izquierda //
     let DivIzq = document.createElement('div');
     DivIzq.setAttribute('class', 'recuadroIzq');
@@ -37,13 +38,30 @@ function InicioNoticias()
     let textoDer = document.createElement('p');
     textoDer.setAttribute('class', 'texto');
     textoDer.innerText = "What is Lorem Ipsum?\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
-
+*/
     //Fundiendo to'
-    DivIzq.appendChild(textoIzq);
-    DivDer.appendChild(textoDer);
     Noticia.appendChild(Titulo);
-    Noticia.appendChild(DivIzq);
-    Noticia.appendChild(DivDer);
+    for(let a = 1; a <= 4; a++)
+    {
+        let texto = document.createElement('p');
+        texto.setAttribute('id', 'prueba');
+        if(a % 2 != 0)
+        {
+            //Izquierda
+            texto.innerText = "Hola mundo a la izquierda";
+            texto.setAttribute('class', 'recuadroIzq');
+            Noticia.appendChild(texto);
+        }
+
+        if(a % 2 == 0)
+        {
+            //Derecha
+            texto.innerText = "Hola mundo pero a la derecha paaa";
+            texto.setAttribute('class', 'recuadroDer');
+            
+            Noticia.appendChild(texto);
+        }
+    }
     document.body.appendChild(Noticia);
 }
 
