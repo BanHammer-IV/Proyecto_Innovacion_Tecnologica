@@ -50,15 +50,16 @@ body{
 {
     width: 42%;
     height: 100%;
-    margin-top: -150px;
+    margin-top: -100px;
     margin-left: 52%;
     border-radius: 10px;
     text-align: justify;
     background-color: aliceblue;
 }
+
 .texto
 {
-    margin: 10px;
+    margin: 20px;
 }
 
 .columnas
@@ -121,4 +122,51 @@ body{
     border-radius: 10px;
     width: 30%;
     height: 30px;
+}
+
+.Tarjeta_producto
+{
+    width: 250px;
+    height: 300px;
+    margin-left: 10px;
+    margin-top: 40px;
+    background-color: aliceblue;
+    border-bottom-left-radius: 18px;
+    border-top-right-radius: 18px;
+}
+
+.imagen
+{
+    width: 230px;
+    height: 130px;
+    margin: 10px;
+}
+
+hr{
+    width: 90%;
+    margin-left: 10px;
+}
+
+.descripcion{
+    margin: 10px;
+    font-size: large;
+}
+
+.BtnProducto{
+    margin-top: 40px;
+    margin-bottom: 20px;
+    margin-left: 10%;
+    font-size: large;
+    background-color: #76b4f7;
+    border-style: solid;
+    border-color: #002042;
+    border-radius: 10px;
+    width: 80%;
+    height: 30px;
+}
+
+.contenedor{
+    margin-left: 40px;
+    display: grid;
+    grid-template-columns: auto auto auto auto;
 }

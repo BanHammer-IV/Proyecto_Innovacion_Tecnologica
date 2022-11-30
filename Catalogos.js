@@ -24,42 +24,32 @@ function InicioNoticias()
     Titulo.innerText = "Noticias";
     Titulo.setAttribute('class', 'Titulo');
 
-    /*
-    // DIV - Texto izquierda //
-    let DivIzq = document.createElement('div');
-    DivIzq.setAttribute('class', 'recuadroIzq');
-    let textoIzq = document.createElement('p');
-    textoIzq.setAttribute('class', 'texto');
-    textoIzq.innerText = "What is Lorem Ipsum?\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
-
-    // DIV - Texto derecha //
-    let DivDer = document.createElement('div');
-    DivDer.setAttribute('class', 'recuadroDer');
-    let textoDer = document.createElement('p');
-    textoDer.setAttribute('class', 'texto');
-    textoDer.innerText = "What is Lorem Ipsum?\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
-*/
-    //Fundiendo to'
+    //Agregacion de los textos
     Noticia.appendChild(Titulo);
+
     for(let a = 1; a <= 4; a++)
     {
         let texto = document.createElement('p');
+        let Lado = document.createElement('div');
         texto.setAttribute('id', 'prueba');
         if(a % 2 != 0)
         {
             //Izquierda
-            texto.innerText = "Hola mundo a la izquierda";
-            texto.setAttribute('class', 'recuadroIzq');
-            Noticia.appendChild(texto);
+            Lado.setAttribute('class', 'recuadroIzq');
+            texto.innerText = "What is Lorem Ipsum?\nLorem Ipsum is simply dummy text of the printing and typesetting industry. Lorem Ipsum has been the industry's standard dummy text ever since the 1500s, when an unknown printer took a galley of type and scrambled it to make a type specimen book. It has survived not only five centuries, but also the leap into electronic typesetting, remaining essentially unchanged. It was popularised in the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more recently with desktop publishing software like Aldus PageMaker including versions of Lorem Ipsum";
+            texto.setAttribute('class', 'texto');
+            Lado.appendChild(texto);
+            Noticia.appendChild(Lado);
         }
 
         if(a % 2 == 0)
         {
             //Derecha
-            texto.innerText = "Hola mundo pero a la derecha paaa";
-            texto.setAttribute('class', 'recuadroDer');
-            
-            Noticia.appendChild(texto);
+            Lado.setAttribute('class', 'recuadroDer');
+            texto.innerText = "It is a long established fact that a reader will be distracted by the readable content of a page when looking at its layout. The point of using Lorem Ipsum is that it has a more-or-less normal distribution of letters, as opposed to using 'Content here, content here', making it look like readable English. Many desktop publishing packages and web page editors now use Lorem Ipsum as their default model text, and a search for 'lorem ipsum' will uncover many web sites still in their infancy. Various versions have evolved over the years, sometimes by accident, sometimes on purpose (injected humour and the like).";
+            texto.setAttribute('class', 'texto');
+            Lado.appendChild(texto);
+            Noticia.appendChild(Lado);
         }
     }
     document.body.appendChild(Noticia);
@@ -69,11 +59,53 @@ function InicioNoticias()
 function AccesoCatalogo()
 {
     removedor();
-    let textoh1 = document.createElement('h1');
-    textoh1.innerText = "Catalogo de productos";
-    textoh1.setAttribute('Id', 'inicio');
-    textoh1.setAttribute('class', 'Titulo');
-    document.body.appendChild(textoh1);
+
+    //DIV - CONTENEDOR
+    let Contenedor = document.createElement('div');
+    Contenedor.setAttribute('class', 'contenedor');
+    Contenedor.setAttribute('id', 'inicio');
+
+    //Titulo
+    let Titulo = document.createElement('h2');
+    Titulo.innerText = "Catalogo de productos\n";
+    Titulo.setAttribute('class', 'Titulo');
+
+    Contenedor.appendChild(Titulo);
+
+    for(let i = 1; i <= 10; i++)
+    {
+        //DIV - Tarjeta del Producto
+        let TarjetaProducto = document.createElement('div');
+        TarjetaProducto.setAttribute('class', 'Tarjeta_producto');
+        
+        //Imagen
+        let ImagenTarjeta = document.createElement('img');
+        ImagenTarjeta.setAttribute('src', 'Images/00750100010630L.webp');
+        ImagenTarjeta.setAttribute('class', 'imagen');
+
+        //Separacion( Este apartado es meramente decorativo )
+        let Separador = document.createElement('hr');
+        
+        //DIV - DESCRIPCION
+        let Descripcion = document.createElement('div');
+        Descripcion.setAttribute('class', 'descripcion');
+        Descripcion.innerText = "Descripcion: \n 62 gr";
+        
+        //BOTON DE REVISION
+        let BotonRevision = document.createElement('button');
+        BotonRevision.setAttribute('onclick', 'RevisarProducto()');
+        BotonRevision.setAttribute('class', 'BtnProducto');
+        BotonRevision.innerText = "Revisar";
+
+        //Empaquetado
+        TarjetaProducto.appendChild(ImagenTarjeta);
+        TarjetaProducto.appendChild(Separador);
+        TarjetaProducto.appendChild(Descripcion);
+        TarjetaProducto.appendChild(BotonRevision);
+    
+        Contenedor.appendChild(TarjetaProducto);
+    }
+    document.body.appendChild(Contenedor);
 }
 
 //Funcion que muestra las ventas  realizadas por el usuario
@@ -179,11 +211,4 @@ function AccesoRegistroNuevo()
     Registro.appendChild(formulario);
 
     document.body.appendChild(Registro);
-}
-
-//funcion para sacar el texto de la etiqueta
-function obtenerID()
-{
-    let opcion = document.getElementById("inicio").textContent;
-    console.log(opcion);
 }
