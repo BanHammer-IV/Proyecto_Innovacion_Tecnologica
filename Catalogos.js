@@ -212,3 +212,12 @@ function AccesoRegistroNuevo()
 
     document.body.appendChild(Registro);
 }
+
+function Prueba()
+{
+    $.get('conexion.php', function(info, estado){
+        alert('informacion de php:' +info+ '\n Estado: '+estado);
+        $('#inicio').html(info);
+    })
+}
+
