@@ -215,9 +215,24 @@ function AccesoRegistroNuevo()
 
 function Prueba()
 {
-    $.get('conexion.php', function(info, estado){
-        alert('informacion de php:' +info+ '\n Estado: '+estado);
-        $('#inicio').html(info);
-    })
+    removedor();
+
+    $('#inicio').keyup(function(){
+        let resultado = $('#inicio').val();
+        $.ajax({
+            url: 'buscar.php',
+            type: 'POST',
+            data: { resultado },
+            success: function( response ){
+                let producto = JSON.parse(response);
+                let template = ' ';
+                producto.forEach(producto =>{
+                    template += `<li>
+                    ${producto.nombre}
+                    </li>`
+                });
+            }
+        })
+    });
 }
 
