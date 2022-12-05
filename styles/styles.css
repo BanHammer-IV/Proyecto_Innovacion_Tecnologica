@@ -127,7 +127,7 @@ body{
 .Tarjeta_producto
 {
     width: 250px;
-    height: 300px;
+    height: 85%;
     margin-left: 10px;
     margin-top: 40px;
     background-color: aliceblue;
@@ -147,7 +147,7 @@ hr{
     margin-left: 10px;
 }
 
-.descripcion{
+.descripcion, .nombre{
     margin: 10px;
     font-size: large;
 }
@@ -170,3 +170,4 @@ hr{
     display: grid;
     grid-template-columns: auto auto auto auto;
 }
+

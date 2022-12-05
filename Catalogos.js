@@ -56,56 +56,82 @@ function InicioNoticias()
 }
 
 //Funcion que muestra todo la lista de productos
-function AccesoCatalogo()
+$(document).ready(function()
 {
-    removedor();
-
-    //DIV - CONTENEDOR
-    let Contenedor = document.createElement('div');
-    Contenedor.setAttribute('class', 'contenedor');
-    Contenedor.setAttribute('id', 'inicio');
-
-    //Titulo
-    let Titulo = document.createElement('h2');
-    Titulo.innerText = "Catalogo de productos\n";
-    Titulo.setAttribute('class', 'Titulo');
-
-    Contenedor.appendChild(Titulo);
-
-    for(let i = 1; i <= 10; i++)
+    $( "#Catalogo" ).click(function() 
     {
-        //DIV - Tarjeta del Producto
-        let TarjetaProducto = document.createElement('div');
-        TarjetaProducto.setAttribute('class', 'Tarjeta_producto');
-        
-        //Imagen
-        let ImagenTarjeta = document.createElement('img');
-        ImagenTarjeta.setAttribute('src', 'Images/00750100010630L.webp');
-        ImagenTarjeta.setAttribute('class', 'imagen');
 
-        //Separacion( Este apartado es meramente decorativo )
-        let Separador = document.createElement('hr');
-        
-        //DIV - DESCRIPCION
-        let Descripcion = document.createElement('div');
-        Descripcion.setAttribute('class', 'descripcion');
-        Descripcion.innerText = "Descripcion: \n 62 gr";
-        
-        //BOTON DE REVISION
-        let BotonRevision = document.createElement('button');
-        BotonRevision.setAttribute('onclick', 'RevisarProducto()');
-        BotonRevision.setAttribute('class', 'BtnProducto');
-        BotonRevision.innerText = "Revisar";
+        //DIV - GENERAL
+        let ContenedorGeneral = document.createElement('div');
+        ContenedorGeneral.setAttribute('id', 'inicio');
 
-        //Empaquetado
-        TarjetaProducto.appendChild(ImagenTarjeta);
-        TarjetaProducto.appendChild(Separador);
-        TarjetaProducto.appendChild(Descripcion);
-        TarjetaProducto.appendChild(BotonRevision);
-    
-        Contenedor.appendChild(TarjetaProducto);
-    }
-    document.body.appendChild(Contenedor);
+        //DIV - CONTENEDOR
+        let Contenedor = document.createElement('div');
+        Contenedor.setAttribute('class', 'contenedor');
+
+        //Titulo
+        let Titulo = document.createElement('h2');
+        Titulo.innerText = "Catalogo de productos\n";
+        Titulo.setAttribute('class', 'Titulo');
+
+        $.get(
+        {
+            url: 'buscar.php',
+            type: 'GET',
+            success: function( response )
+            {
+                let tasks = JSON.parse(response);
+                tasks.forEach(task => {
+                    //DIV - Tarjeta del Producto
+                    let TarjetaProducto = document.createElement('div');
+                    TarjetaProducto.setAttribute('class', 'Tarjeta_producto');
+                    
+                    //Imagen
+                    let ImagenTarjeta = document.createElement('img');
+                    ImagenTarjeta.setAttribute('src', 'Images/00750100010630L.webp');
+                    ImagenTarjeta.setAttribute('class', 'imagen');
+
+                    //Separacion( Este apartado es meramente decorativo )
+                    let Separador = document.createElement('hr');
+                    
+                    //DIV - NOMBRE
+                    let Nombre = document.createElement('div');
+                    Nombre.setAttribute('class', 'nombre');
+                    Nombre.innerText = "Nombre: " + task.nombre_producto;
+
+                    //DIV - DESCRIPCION
+                    let Descripcion = document.createElement('div');
+                    Descripcion.setAttribute('class', 'descripcion');
+                    Descripcion.innerText = "Descripcion: "+ task.descripcion;
+                    
+                    //BOTON DE REVISION
+                    let BotonRevision = document.createElement('button');
+                    BotonRevision.setAttribute('onclick', 'RevisarProducto()');
+                    BotonRevision.setAttribute('class', 'BtnProducto');
+                    BotonRevision.innerText = "Revisar";
+
+                    //Empaquetado
+                    TarjetaProducto.appendChild(ImagenTarjeta);
+                    TarjetaProducto.appendChild(Separador);
+                    TarjetaProducto.appendChild(Nombre);
+                    TarjetaProducto.appendChild(Descripcion);
+                    TarjetaProducto.appendChild(BotonRevision);
+                
+                    Contenedor.appendChild(TarjetaProducto);
+                });
+                ContenedorGeneral.appendChild(Titulo);
+                ContenedorGeneral.appendChild(Contenedor);
+                document.body.appendChild(ContenedorGeneral);
+                
+                $('#task-result').show();
+                $('#container').html(template);
+            }
+        })
+    })
+});
+
+function AccesoCatalogo(){
+    removedor();
 }
 
 //Funcion que muestra las ventas  realizadas por el usuario
@@ -235,4 +261,29 @@ function Prueba()
         })
     });
 }
+
+$(document).ready(function()
+{
+    $('#search').keyup(function(e){
+        let search = $('#search').val();
+        $.ajax({
+            url: 'buscar.php',
+            type: 'POST',
+            data: { search },
+            success: function( response ){
+                let tasks = JSON.parse(response);
+                let template = '';
+                tasks.forEach(task => {
+                    template += `<li>
+                    ${task.nombre_producto}
+                    ${task.existencias}
+                    </li>`
+                });
+                $('#task-result').show();
+                $('#container').html(template);
+            }
+        })
+    })
+});
+
 
