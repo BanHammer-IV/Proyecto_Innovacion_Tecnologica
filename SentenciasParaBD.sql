@@ -2,20 +2,20 @@
 CREATE TABLE Proveedores (
 ID_Proveedor int,
 Nombre_Empresa VARCHAR(50),
-Lista_Productos VARCHAR(50)
+Lista_Productos VARCHAR(50),
 PRIMARY KEY (ID_Proveedor)
 )
 
-INSERT INTO Proveedores VALUES (1, 'Bimbo', '1, 3, 7' )
-INSERT INTO Proveedores VALUES (2, 'La Costeña', '2, 6, 10' )
-INSERT INTO Proveedores VALUES (3, 'Sabritas', '4, 5, 8' )
-INSERT INTO Proveedores VALUES (4, 'Coca-Cola', '9, 12, 20' )
-INSERT INTO Proveedores VALUES (5, 'Lala', '11, 14, 17' )
-INSERT INTO Proveedores VALUES (6, 'PepsiCo', '13, 15, 16' )
-INSERT INTO Proveedores VALUES (7, 'Nestlé', '18, 30, 23' )
-INSERT INTO Proveedores VALUES (8, 'Gamesa', '19, 22, 25' )
-INSERT INTO Proveedores VALUES (9, 'Herdez', '21, 24, 29' )
-INSERT INTO Proveedores VALUES (10, 'Dulces de la Rosa', '26, 27, 28' )
+INSERT INTO Proveedores VALUES (1, 'Bimbo', '1, 3, 7' );
+INSERT INTO Proveedores VALUES (2, 'La Costeña', '2, 6, 10' );
+INSERT INTO Proveedores VALUES (3, 'Sabritas', '4, 5, 8' );
+INSERT INTO Proveedores VALUES (4, 'Coca-Cola', '9, 12, 20' );
+INSERT INTO Proveedores VALUES (5, 'Lala', '11, 14, 17' );
+INSERT INTO Proveedores VALUES (6, 'PepsiCo', '13, 15, 16' );
+INSERT INTO Proveedores VALUES (7, 'Nestlé', '18, 30, 23' );
+INSERT INTO Proveedores VALUES (8, 'Gamesa', '19, 22, 25' );
+INSERT INTO Proveedores VALUES (9, 'Herdez', '21, 24, 29' );
+INSERT INTO Proveedores VALUES (10, 'Dulces de la Rosa', '26, 27, 28' );
 
 SELECT * FROM Proveedores
 
@@ -61,3 +61,61 @@ INSERT INTO Productos VALUES (29,'Salsa',22,31,9,'Salsa Herdez casera 453 g');
 INSERT INTO Productos VALUES (30,'Jugo sazonador Nestle Maggi',18,39.5,7,'100 ml');
 
 select * from Productos
+
+
+/* TABLA LOGINS */
+CREATE TABLE Logins(
+	ID_Vendedor int,
+  	Ventas_Totales int,
+  	Compras_Totales int,
+  	Ganancias float,
+  	ID_Ventas int,
+  	ID_Compras int,
+  	PRIMARY KEY (ID_Vendedor)
+)
+
+INSERT INTO Logins VALUES (1, 7,0,350.50,1,2), (2, 5,0,25,2,3), (3, 4,2,75.90,4,5),
+(4, 15,0,500,5,6), (5, 8,4,120.50,6,7), (6, 20,0,1250.25,7,8), 
+(7, 1,0,10,8,9), (8, 7,0,7,9,10), (9, 10,0,685.75,10,11), (10, 0,10,0,11,12) 
+
+SELECT * FROM Logins
+
+/* TABLA VENTAS */
+CREATE TABLE Ventas (
+ID_Ventas int,
+ID_Vendedor int,
+Descripcion VARCHAR(400),
+Fecha Date,
+Total_Venta float,
+PRIMARY KEY (ID_Ventas)
+)
+
+INSERT INTO ventas VALUES (1, 1, '1, 4; 3, 7; 4, 1; 7, 3', 06/12/2022, 150.43 );
+INSERT INTO ventas VALUES (2, 1,'30, 2; 2, 10; 3, 9;4, 15;',06/12/2022, 200.89);
+INSERT INTO ventas VALUES (3, 2,'15, 2; 3, 48; 16, 8;4, 10;',06/12/2022, 300.15);
+INSERT INTO ventas VALUES (4, 2,'12, 11; 10, 9; 8, 7;6, 5;',06/12/2022, 168.50);
+INSERT INTO ventas VALUES (5, 3,'29, 19; 15, 1; 20, 2; 25, 4;',06/12/2022, 95.5);
+INSERT INTO ventas VALUES (6, 3,'18, 28; 16, 2; 21, 3; 26, 3;',06/12/2022, 110.5);
+INSERT INTO ventas VALUES (7, 4,'7, 15; 17, 3; 22, 4; 27, 2;',06/12/2022, 416.5);
+INSERT INTO ventas VALUES (8, 4,'2, 10; 18, 4; 23, 9; 28, 5;',06/12/2022, 91.10);
+INSERT INTO ventas VALUES (9, 5,'3, 2; 19, 5; 24, 7; 29, 1;',06/12/2022, 50.5);
+INSERT INTO ventas VALUES (10, 5, '26, 1; 28, 2;', 15.1);
+
+/* TABLA COMPRAS */
+CREATE TABLE Proveedores (
+ID_Proveedor int,
+Nombre_Empresa VARCHAR(50),
+Lista_Productos VARCHAR(50),
+PRIMARY KEY (ID_Proveedor)
+)
+
+INSERT INTO Proveedores VALUES (1, 'Bimbo', '1, 3, 7' );
+INSERT INTO Proveedores VALUES (2, 'La Costeña', '2, 6, 10' );
+INSERT INTO Proveedores VALUES (3, 'Sabritas', '4, 5, 8' );
+INSERT INTO Proveedores VALUES (4, 'Coca-Cola', '9, 12, 20' );
+INSERT INTO Proveedores VALUES (5, 'Lala', '11, 14, 17' );
+INSERT INTO Proveedores VALUES (6, 'PepsiCo', '13, 15, 16' );
+INSERT INTO Proveedores VALUES (7, 'Nestlé', '18, 30, 23' );
+INSERT INTO Proveedores VALUES (8, 'Gamesa', '19, 22, 25' );
+INSERT INTO Proveedores VALUES (9, 'Herdez', '21, 24, 29' );
+INSERT INTO Proveedores VALUES (10, 'Dulces de la Rosa', '26, 27, 28' );

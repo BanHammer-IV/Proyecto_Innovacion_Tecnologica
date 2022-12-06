@@ -166,8 +166,36 @@ hr{
 }
 
 .contenedor{
-    margin-left: 40px;
     display: grid;
-    grid-template-columns: auto auto auto auto;
+    grid-template-columns: auto auto auto;
+    margin-left: 10%;
 }
 
+.barraVenta{
+    width: 50%;
+    height: 100%;
+    margin-left: 10%;
+    background-color: #9BDCFB;
+    border-radius: 16px;
+   
+}
+
+.barras{
+    margin-top: 50px;
+}
+.BtnRevisarVenta{
+    margin-top: 20px;
+    margin-bottom: 5px;
+    margin-left: 5px;
+    font-size: large;
+    background-color: #76b4f7;
+    border-style: solid;
+    border-color: #002042;
+    border-radius: 10px;
+    width: 95%;
+    height: 30px;
+}
+
+.TxtInterno{
+    margin-left: 5px;
+}

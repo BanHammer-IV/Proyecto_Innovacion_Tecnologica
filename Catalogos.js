@@ -55,7 +55,7 @@ function InicioNoticias()
     document.body.appendChild(Noticia);
 }
 
-//Funcion que muestra todo la lista de productos
+//Funciones que muestra todo la lista de productos
 $(document).ready(function()
 {
     $( "#Catalogo" ).click(function() 
@@ -76,7 +76,7 @@ $(document).ready(function()
 
         $.get(
         {
-            url: 'buscar.php',
+            url: 'Productos/buscar.php',
             type: 'GET',
             success: function( response )
             {
@@ -134,15 +134,69 @@ function AccesoCatalogo(){
     removedor();
 }
 
-//Funcion que muestra las ventas  realizadas por el usuario
+//Funciones que muestra las ventas  realizadas por el usuario
+$(document).ready(function()
+{
+    $('#ventas').click(function(){
+        // Variables independientes
+        let separador = document.createElement('hr');
+        let salto = document.createElement('br');
+
+        //DIV - GENERAL
+        let ContenedorGeneral = document.createElement('div');
+        ContenedorGeneral.setAttribute('id', 'inicio');
+
+        //DIV - BARRAS
+        let Contenedor = document.createElement('div');
+        Contenedor.setAttribute('class', 'barras');
+
+        //Titulo
+        let Titulo = document.createElement('h2');
+        Titulo.innerText = "Ventas\n";
+        Titulo.setAttribute('class', 'Titulo');
+
+        $.get(
+        {
+            url: 'Ventas/Consulta.php',
+            type: 'GET',
+            success: function( response )
+            {
+                let tasks = JSON.parse(response);
+                tasks.forEach(task => {
+                    // DIV - Barra de Ventas
+                    let Barra_Ventas = document.createElement('div');
+                    Barra_Ventas.setAttribute('class', 'barraVenta');
+                    
+                    // DIV - Texto de Relleno
+                    let TextoRelleno = document.createElement('div');
+                    TextoRelleno.setAttribute('class', 'TxtInterno');
+                    TextoRelleno.innerText = "\nVenta no.: "+task.id_ventas+"\n";
+                    TextoRelleno.appendChild(separador);
+                    TextoRelleno.innerText = "\nDescripcion: "+task.descripcion+"\n";
+                    TextoRelleno.appendChild(separador);
+                    // BOTON - Revisar
+                    let BotonRevisarVenta = document.createElement('Button');
+                    BotonRevisarVenta.setAttribute('class', 'BtnRevisarVenta');
+                    BotonRevisarVenta.innerText = "Revisar";
+
+                    Barra_Ventas.appendChild(TextoRelleno);
+                    Barra_Ventas.appendChild(BotonRevisarVenta);
+                    Contenedor.appendChild(Barra_Ventas);
+                });
+                ContenedorGeneral.appendChild(Titulo);
+                ContenedorGeneral.appendChild(Contenedor);
+                document.body.appendChild(ContenedorGeneral);
+                
+                $('#task-result').show();
+                $('#container').html(template);
+            }
+        })
+    })
+});
+
 function AccesoVentas()
 {
     removedor();
-    let textoh1 = document.createElement('h1');
-    textoh1.innerText = "Ventas del usuario";
-    textoh1.setAttribute('Id', 'inicio');
-    textoh1.setAttribute('class', 'Titulo');
-    document.body.appendChild(textoh1);
 }
 
 //Funcion que muestra las compras realizadas por el usuario
