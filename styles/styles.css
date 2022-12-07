@@ -177,16 +177,18 @@ hr{
     margin-left: 10%;
     background-color: #9BDCFB;
     border-radius: 16px;
+    margin-bottom: 10px;
    
 }
 
 .barras{
     margin-top: 50px;
 }
+
 .BtnRevisarVenta{
     margin-top: 20px;
     margin-bottom: 5px;
-    margin-left: 5px;
+    margin-left: 15px;
     font-size: large;
     background-color: #76b4f7;
     border-style: solid;

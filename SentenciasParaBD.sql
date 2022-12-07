@@ -102,20 +102,21 @@ INSERT INTO ventas VALUES (9, 5,'3, 2; 19, 5; 24, 7; 29, 1;',06/12/2022, 50.5);
 INSERT INTO ventas VALUES (10, 5, '26, 1; 28, 2;', 15.1);
 
 /* TABLA COMPRAS */
-CREATE TABLE Proveedores (
-ID_Proveedor int,
-Nombre_Empresa VARCHAR(50),
-Lista_Productos VARCHAR(50),
-PRIMARY KEY (ID_Proveedor)
+CREATE TABLE Compras (
+ID_Compra int,
+ID_Vendedor int,
+Descripcion VARCHAR(250),
+Fecha date,
+Total_Compra float
 )
 
-INSERT INTO Proveedores VALUES (1, 'Bimbo', '1, 3, 7' );
-INSERT INTO Proveedores VALUES (2, 'La Costeña', '2, 6, 10' );
-INSERT INTO Proveedores VALUES (3, 'Sabritas', '4, 5, 8' );
-INSERT INTO Proveedores VALUES (4, 'Coca-Cola', '9, 12, 20' );
-INSERT INTO Proveedores VALUES (5, 'Lala', '11, 14, 17' );
-INSERT INTO Proveedores VALUES (6, 'PepsiCo', '13, 15, 16' );
-INSERT INTO Proveedores VALUES (7, 'Nestlé', '18, 30, 23' );
-INSERT INTO Proveedores VALUES (8, 'Gamesa', '19, 22, 25' );
-INSERT INTO Proveedores VALUES (9, 'Herdez', '21, 24, 29' );
-INSERT INTO Proveedores VALUES (10, 'Dulces de la Rosa', '26, 27, 28' );
+INSERT INTO compras VALUES (1, 1, '2, 12; 3, 14; 4, 8; 5, 19;', 2022-12-07, 135.5);
+INSERT INTO compras VALUES (2, 1, '6, 8; 7, 10; 8, 10; 9, 11;', 2022-12-07, 120.5);
+INSERT INTO compras VALUES (3, 1, '10, 5; 11, 2; 12, 4; 13, 5;', 2022-12-07, 150.5);
+INSERT INTO compras VALUES (4, 1, '1, 2', 2022-12-07, 231.5);
+INSERT INTO compras VALUES (5, 2, '1, 4; 2, 5; 3, 4; 4, 3;', 2022-12-07, 214.5);
+INSERT INTO compras VALUES (6, 2, '5, 1; 6, 2; 7, 2; 9, 1;', 2022-12-07, 220.5);
+INSERT INTO compras VALUES (7, 2, '8, 1; 18, 2; 13, 4; 12, 2;', 2022-12-07, 200.4);
+INSERT INTO compras VALUES (8, 3, '12, 1; 13, 2; 14, 1; 14, 1;', 2022-12-07, 95.8);
+INSERT INTO compras VALUES (9, 4, '1, 1; 2, 1; 3, 2; 4, 1;', 2022-12-07, 100.5);
+INSERT INTO compras VALUES (10, 5, '1, 2',  2022-12-07, 15.5);

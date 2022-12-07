@@ -76,7 +76,7 @@ $(document).ready(function()
 
         $.get(
         {
-            url: 'Productos/buscar.php',
+            url: 'Productos/Consulta.php',
             type: 'GET',
             success: function( response )
             {
@@ -122,9 +122,6 @@ $(document).ready(function()
                 ContenedorGeneral.appendChild(Titulo);
                 ContenedorGeneral.appendChild(Contenedor);
                 document.body.appendChild(ContenedorGeneral);
-                
-                $('#task-result').show();
-                $('#container').html(template);
             }
         })
     })
@@ -138,10 +135,6 @@ function AccesoCatalogo(){
 $(document).ready(function()
 {
     $('#ventas').click(function(){
-        // Variables independientes
-        let separador = document.createElement('hr');
-        let salto = document.createElement('br');
-
         //DIV - GENERAL
         let ContenedorGeneral = document.createElement('div');
         ContenedorGeneral.setAttribute('id', 'inicio');
@@ -171,24 +164,29 @@ $(document).ready(function()
                     let TextoRelleno = document.createElement('div');
                     TextoRelleno.setAttribute('class', 'TxtInterno');
                     TextoRelleno.innerText = "\nVenta no.: "+task.id_ventas+"\n";
-                    TextoRelleno.appendChild(separador);
-                    TextoRelleno.innerText = "\nDescripcion: "+task.descripcion+"\n";
-                    TextoRelleno.appendChild(separador);
+
+                    // DIV - Texto de Relleno
+                    let TextoTotal = document.createElement('div');
+                    TextoTotal.setAttribute('class', 'TxtInterno');
+                    TextoTotal.innerText = "Total de la venta: "+task.total_venta+"\n";
+
+                    //Separacion( Este apartado es meramente decorativo )
+                    let Separador = document.createElement('hr');
+
                     // BOTON - Revisar
                     let BotonRevisarVenta = document.createElement('Button');
                     BotonRevisarVenta.setAttribute('class', 'BtnRevisarVenta');
                     BotonRevisarVenta.innerText = "Revisar";
 
                     Barra_Ventas.appendChild(TextoRelleno);
+                    Barra_Ventas.appendChild(Separador);
+                    Barra_Ventas.appendChild(TextoTotal);
                     Barra_Ventas.appendChild(BotonRevisarVenta);
                     Contenedor.appendChild(Barra_Ventas);
                 });
                 ContenedorGeneral.appendChild(Titulo);
                 ContenedorGeneral.appendChild(Contenedor);
                 document.body.appendChild(ContenedorGeneral);
-                
-                $('#task-result').show();
-                $('#container').html(template);
             }
         })
     })
@@ -200,14 +198,69 @@ function AccesoVentas()
 }
 
 //Funcion que muestra las compras realizadas por el usuario
+$(document).ready(function()
+{
+    $('#compras').click(function(){
+        //DIV - GENERAL
+        let ContenedorGeneral = document.createElement('div');
+        ContenedorGeneral.setAttribute('id', 'inicio');
+
+        //DIV - BARRAS
+        let Contenedor = document.createElement('div');
+        Contenedor.setAttribute('class', 'barras');
+
+        //Titulo
+        let Titulo = document.createElement('h2');
+        Titulo.innerText = "Compras\n";
+        Titulo.setAttribute('class', 'Titulo');
+
+        $.get(
+        {
+            url: 'Compras/Consulta.php',
+            type: 'GET',
+            success: function( response )
+            {
+                let tasks = JSON.parse(response);
+                tasks.forEach(task => {
+                    // DIV - Barra de Ventas
+                    let Barra_Compra = document.createElement('div');
+                    Barra_Compra.setAttribute('class', 'barraVenta');
+                    
+                    // DIV - Texto de Relleno
+                    let TextoRelleno = document.createElement('div');
+                    TextoRelleno.setAttribute('class', 'TxtInterno');
+                    TextoRelleno.innerText = "\nCompra no.: "+task.id_compra+"\n";
+
+                    // DIV - Texto de Relleno
+                    let TextoTotal = document.createElement('div');
+                    TextoTotal.setAttribute('class', 'TxtInterno');
+                    TextoTotal.innerText = "Total de la compra: "+task.total_compra+"\n";
+
+                    //Separacion( Este apartado es meramente decorativo )
+                    let Separador = document.createElement('hr');
+
+                    // BOTON - Revisar
+                    let BotonRevisarCompra = document.createElement('Button');
+                    BotonRevisarCompra.setAttribute('class', 'BtnRevisarVenta');
+                    BotonRevisarCompra.innerText = "Revisar";
+
+                    Barra_Compra.appendChild(TextoRelleno);
+                    Barra_Compra.appendChild(Separador);
+                    Barra_Compra.appendChild(TextoTotal);
+                    Barra_Compra.appendChild(BotonRevisarCompra);
+                    Contenedor.appendChild(Barra_Compra);
+                });
+                ContenedorGeneral.appendChild(Titulo);
+                ContenedorGeneral.appendChild(Contenedor);
+                document.body.appendChild(ContenedorGeneral);
+            }
+        })
+    })
+});
+
 function AccesoCompras()
 {
     removedor();
-    let textoh1 = document.createElement('h1');
-    textoh1.innerText = "Compras del usuario";
-    textoh1.setAttribute('Id', 'inicio');
-    textoh1.setAttribute('class', 'Titulo');
-    document.body.appendChild(textoh1);
 }
 
 //Funcion para Iniciar sesion
