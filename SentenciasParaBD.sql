@@ -63,8 +63,8 @@ INSERT INTO Productos VALUES (30,'Jugo sazonador Nestle Maggi',18,39.5,7,'100 ml
 select * from Productos
 
 
-/* TABLA LOGINS */
-CREATE TABLE Logins(
+/* TABLA MOVIMIENTOS */
+CREATE TABLE movimientos(
 	ID_Vendedor int,
   	Ventas_Totales int,
   	Compras_Totales int,
@@ -74,7 +74,7 @@ CREATE TABLE Logins(
   	PRIMARY KEY (ID_Vendedor)
 )
 
-INSERT INTO Logins VALUES (1, 7,0,350.50,1,2), (2, 5,0,25,2,3), (3, 4,2,75.90,4,5),
+INSERT INTO movimientos VALUES (1, 7,0,350.50,1,2), (2, 5,0,25,2,3), (3, 4,2,75.90,4,5),
 (4, 15,0,500,5,6), (5, 8,4,120.50,6,7), (6, 20,0,1250.25,7,8), 
 (7, 1,0,10,8,9), (8, 7,0,7,9,10), (9, 10,0,685.75,10,11), (10, 0,10,0,11,12) 
 
@@ -120,3 +120,12 @@ INSERT INTO compras VALUES (7, 2, '8, 1; 18, 2; 13, 4; 12, 2;', 2022-12-07, 200.
 INSERT INTO compras VALUES (8, 3, '12, 1; 13, 2; 14, 1; 14, 1;', 2022-12-07, 95.8);
 INSERT INTO compras VALUES (9, 4, '1, 1; 2, 1; 3, 2; 4, 1;', 2022-12-07, 100.5);
 INSERT INTO compras VALUES (10, 5, '1, 2',  2022-12-07, 15.5);
+
+/* TABLA Logins/Inicios de sesion/Registros */
+CREATE TABLE Logins (
+ID_Cliente int AUTO INCREMENT,
+Nombre VARCHAR(50),
+Apellido VARCHAR(50),
+Correo VARCHAR(150),
+Contrasenia VARCHAR(30)
+)

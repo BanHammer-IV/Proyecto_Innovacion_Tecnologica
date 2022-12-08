@@ -229,7 +229,7 @@ $(document).ready(function()
                     // DIV - Texto de Relleno
                     let TextoRelleno = document.createElement('div');
                     TextoRelleno.setAttribute('class', 'TxtInterno');
-                    TextoRelleno.innerText = "\nCompra no.: "+task.id_compra+"\n";
+                    TextoRelleno.innerText = "\nCompra no.: "+task.id_compra+"\nVendedor: "+task.id_vendedor;
 
                     // DIV - Texto de Relleno
                     let TextoTotal = document.createElement('div');
@@ -285,19 +285,18 @@ function AccesoRegistroNuevo()
 
     //  FORM    //
     let formulario = document.createElement('form');
-    formulario.setAttribute('action', '#');
 
     // INPUT - NOMBRE                 //
     let inputName = document.createElement('input');
     inputName.setAttribute('type', 'text');
-    inputName.setAttribute('name', 'nombre');     
+    inputName.setAttribute('id', 'nombre');   
     inputName.setAttribute('class', 'inputForm');
     inputName.setAttribute('placeholder', 'Nombre');
 
     // INPUT - APELLIDO               //
     let inputApellido = document.createElement('input');
     inputApellido.setAttribute('type', 'text');
-    inputApellido.setAttribute('name', 'apellido');     
+    inputApellido.setAttribute('id', 'apellido');     
     inputApellido.setAttribute('class', 'inputForm');
     inputApellido.setAttribute('placeholder', 'Apellido');
 
@@ -310,14 +309,14 @@ function AccesoRegistroNuevo()
 
     // INPUT - CONTRASEÑA             //
     let inputContrasenia = document.createElement('input');
-    inputContrasenia.setAttribute('type', 'text');
+    inputContrasenia.setAttribute('type', 'password');
     inputContrasenia.setAttribute('name', 'contrasenia');     
     inputContrasenia.setAttribute('class', 'inputForm');
     inputContrasenia.setAttribute('placeholder', 'Contraseña');
 
     // INPUT - CONFIRMAR CONTRASEÑA   //
     let inputConfirmarContrasenia = document.createElement('input');
-    inputConfirmarContrasenia.setAttribute('type', 'text');
+    inputConfirmarContrasenia.setAttribute('type', 'password');
     inputConfirmarContrasenia.setAttribute('name', 'confirmarcontrasenia');     
     inputConfirmarContrasenia.setAttribute('class', 'inputForm');
     inputConfirmarContrasenia.setAttribute('placeholder', 'Confirmar Contraseña');
@@ -325,6 +324,7 @@ function AccesoRegistroNuevo()
     // BOTON - REGISTRAR //
     let btnRegistro = document.createElement('input');
     btnRegistro.setAttribute('type', 'submit');
+    btnRegistro.setAttribute('id', 'registros');
     btnRegistro.setAttribute('value', 'Registrar');
     btnRegistro.setAttribute('class', 'btnRegistro');
 
@@ -346,6 +346,66 @@ function AccesoRegistroNuevo()
     document.body.appendChild(Registro);
 }
 
+$(document).ready(function()
+{
+    $("#registro").click(function()
+    {
+        /*console.log("Estoy entrando al metodo post de registro");
+        $('#nombre').keyup(function(e){
+            let search = $('#nombre').val();
+            $.ajax
+            ({
+                url: 'Clientes/Registro.php',
+                type: 'POST',
+                data: { search },
+                success: function( response )
+                {
+                    let tasks = JSON.parse(response);
+                    tasks.forEach(task => {
+                        console.log(response);
+                        console.log($('#nombre').val());
+                        if(task.nombre)
+                        {
+                            console.log("Ya ha sido registrado");
+                        }
+                    });
+
+                }
+            })
+        })*/
+        $("#registros").click(function()
+        {
+
+            $.get(
+                {
+                    url: 'Clientes/Registro.php',
+                    type: 'GET',
+                    success: function( response )
+                    {
+                        $('#nombre').keyup(function(e){
+                            let search = $('#nombre').val();
+                            $.ajax
+                            ({
+                                url: 'Clientes/Registro.php',
+                                type: 'POST',
+                                data: { search },
+                                success: function( response )
+                                {
+                                    let tasks = JSON.parse(response);
+                                    tasks.forEach(task => {
+
+                                    });
+                
+                                }
+                            })
+                        
+                        });
+                    }           
+                })   
+        })
+    });
+})
+
 function Prueba()
 {
     removedor();
@@ -360,9 +420,8 @@ function Prueba()
                 let producto = JSON.parse(response);
                 let template = ' ';
                 producto.forEach(producto =>{
-                    template += `<li>
-                    ${producto.nombre}
-                    </li>`
+                    //$('#nombre').show();
+                    $('#nombre').html(template);
                 });
             }
         })
