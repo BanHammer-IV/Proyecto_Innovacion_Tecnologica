@@ -285,6 +285,7 @@ function AccesoRegistroNuevo()
 
     //  FORM    //
     let formulario = document.createElement('form');
+    formulario.setAttribute('action', '#');
 
     // INPUT - NOMBRE                 //
     let inputName = document.createElement('input');
@@ -333,6 +334,13 @@ function AccesoRegistroNuevo()
     Titulo.innerText = "Registro";
     Titulo.setAttribute('class', 'Titulo');
 
+    $(document).ready(function()
+{
+    $("#registros").click(function()
+    {
+        console.log("Estoy registrando paaaaa");
+    });
+})
     //  Fundiendo to' //
     formulario.appendChild(inputName);
     formulario.appendChild(inputApellido);    
@@ -350,59 +358,7 @@ $(document).ready(function()
 {
     $("#registro").click(function()
     {
-        /*console.log("Estoy entrando al metodo post de registro");
-        $('#nombre').keyup(function(e){
-            let search = $('#nombre').val();
-            $.ajax
-            ({
-                url: 'Clientes/Registro.php',
-                type: 'POST',
-                data: { search },
-                success: function( response )
-                {
-                    let tasks = JSON.parse(response);
-                    tasks.forEach(task => {
-                        console.log(response);
-                        console.log($('#nombre').val());
-                        if(task.nombre)
-                        {
-                            console.log("Ya ha sido registrado");
-                        }
-                    });
-
-                }
-            })
-        })*/
-        $("#registros").click(function()
-        {
-
-            $.get(
-                {
-                    url: 'Clientes/Registro.php',
-                    type: 'GET',
-                    success: function( response )
-                    {
-                        $('#nombre').keyup(function(e){
-                            let search = $('#nombre').val();
-                            $.ajax
-                            ({
-                                url: 'Clientes/Registro.php',
-                                type: 'POST',
-                                data: { search },
-                                success: function( response )
-                                {
-                                    let tasks = JSON.parse(response);
-                                    tasks.forEach(task => {
-
-                                    });
-                
-                                }
-                            })
-                        
-                        });
-                    }           
-                })   
-        })
+        console.log("Me meti al registro");
     });
 })
 
@@ -427,6 +383,55 @@ function Prueba()
         })
     });
 }
+
+
+$(document).ready(function()
+{
+    $('#forma').submit(function(){
+        let nombre = $('#nombre_cliente').val();
+        let apellido = $('#apellido_cliente').val();
+        $.ajax({
+            url: 'Clientes/prueba.php',
+            type: 'POST',
+            data: { search: [nombre, apellido]},
+            success: function( response ){
+                try {
+
+                    /* Si el JSON está mal formado se generará una excepción */
+                    let info = JSON.parse(response);
+                    if (info.error == true) {
+                      /* Si hemos enviado por JSON un error, lo notificamos */
+                      console.log('ERROR detectado:', info);
+                      return;
+                    }
+
+                    /* Trabajamos habitualmente con la respuesta */
+                    info.forEach(task => {
+                        if(task.ref == 1)
+                        {
+                            console.log("Ya existe pa");
+                            $( "#buscar" ).click(function() {
+                                var color = $( this ).css( "background-color" );
+                                $( "#container" ).html( "That div is <span style='color:rgb(15,99,30);'>" + color + "</span>." );
+                              });
+                        }
+                        if(task.ref == 0){
+                            console.log("No existe pa");
+                        }
+                    });
+                    
+                    //console.log(response);
+
+                  } catch {
+                    /* Si el JSON está mal, notificamos su contenido */
+                    console.log('ERROR. Recibido:', response);
+                  }
+            }
+        })
+    })
+});
+
+
 
 $(document).ready(function()
 {
