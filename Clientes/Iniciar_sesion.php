@@ -1,26 +1,42 @@
 <?php
-    include('Conexion.php');
+    include("Conexion.php");
     
     $resultados = $_POST['search'];
-    if(!empty($resultados))
-    {
-        $query = "SELECT * FROM productos WHERE Nombre_Producto LIKE '$resultados%'";
-        $result = mysqli_query($connection, $query);
-        if(!$result){
-            die('Query Error '.mysqli_error($connection));
-        }
+
+    //Separacion del nombre
+    $recorteNombre = array_slice($resultados, 0, 1);
+    $nombre = implode("",$recorteNombre);
+
+    //Separacion de la contraseña
+    $recorte = array_slice($resultados, 1, 1);
+    $contrasenia = implode("",$recorte);
+
+    $query = "SELECT * FROM logins WHERE Nombre = '$nombre' AND Contrasenia = '$contrasenia'";
+    $result = mysqli_query($connection, $query);
+    if(!$result){
+        die('Query Error '.mysqli_error($connection));
+    }
+    
+
+    if(mysqli_num_rows($result) > 0){
         $json = array();
         while($row = mysqli_fetch_array($result)){
             $json[] = array(
-                'id_producto' => $row["ID_Producto"],
-                'nombre_producto' => $row["Nombre_Producto"],
-                'existencias' => $row["Existencias"],
-                'precio' => $row["Precio"],
-                'id_proveedor' => $row["ID_Proveedor"],
-                'descripcion' => $row["Descripcion"]
-            );
+                'ref' => 1,
+                'id_cliente' => $row["ID_Cliente"],
+                'nombre' => $row["Nombre"],
+                'apellido' => $row["Apellido"],
+                'correo' => $row["Correo"],
+                'contrasenia' => $row["Contrasenia"]
+                );
         }
-        $jsonstring = json_encode($json);
-        echo $jsonstring;
     }
+    else{
+        $json[] = array('ref' => 0);
+    }
+
+
+    $jsonstring = json_encode($json);
+    echo $jsonstring;
+
 ?>

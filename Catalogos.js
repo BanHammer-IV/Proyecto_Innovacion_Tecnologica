@@ -389,11 +389,11 @@ $(document).ready(function()
 {
     $('#forma').submit(function(){
         let nombre = $('#nombre_cliente').val();
-        let apellido = $('#apellido_cliente').val();
+        let contrasenia = $('#contrasenia_cliente').val();
         $.ajax({
-            url: 'Clientes/prueba.php',
+            url: 'Clientes/Iniciar_sesion.php',
             type: 'POST',
-            data: { search: [nombre, apellido]},
+            data: { search: [nombre, contrasenia]},
             success: function( response ){
                 try {
 
@@ -405,22 +405,19 @@ $(document).ready(function()
                       return;
                     }
 
-                    /* Trabajamos habitualmente con la respuesta */
+                    /* Trabajamos habitualmente con la respuesta 
                     info.forEach(task => {
                         if(task.ref == 1)
                         {
-                            console.log("Ya existe pa");
-                            $( "#buscar" ).click(function() {
-                                var color = $( this ).css( "background-color" );
-                                $( "#container" ).html( "That div is <span style='color:rgb(15,99,30);'>" + color + "</span>." );
-                              });
+                            console.log("Ya existe");
+                            console.log(task.nombre);
                         }
                         if(task.ref == 0){
-                            console.log("No existe pa");
+                            console.log("No existe");
                         }
-                    });
+                    });*/
                     
-                    //console.log(response);
+                    console.log(response);
 
                   } catch {
                     /* Si el JSON está mal, notificamos su contenido */
