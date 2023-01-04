@@ -65,8 +65,10 @@ body{
 .columnas
 {
     display: grid;
-    grid-template-columns: auto auto auto auto auto auto;
-    width: 100%;
+    grid-template-columns: auto auto auto auto auto auto auto;
+    width: 95%;
+    margin-left: 30px;
+    margin-right: 30px;
 }
 
 .Titulo
@@ -200,4 +202,15 @@ hr{
 
 .TxtInterno{
     margin-left: 5px;
+}
+
+.tarjetaInicioSesion{
+    width: 20%;
+    height: 40%;
+    background-color: #2EA3D6;
+    margin-left: 10%;
+    margin-top: 5%;
+    border-style:  solid;
+    border-width: 1px;
+    border-color: #B2E8FF;
 }

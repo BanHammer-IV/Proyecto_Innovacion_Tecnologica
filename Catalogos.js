@@ -11,6 +11,36 @@ function removedor()
     });
 }
 
+function removedorBtnCerrar()
+{
+    //Funcion que borra lo que se esta mostrando
+    //actualmente en la pagina
+    $(function()
+    {
+        setTimeout(function()
+        {
+            $(document.getElementById("Close")).remove();
+        })
+    });
+}
+
+function removedorContainerLogin()
+{
+    //Funcion que borra lo que se esta mostrando
+    //actualmente en la pagina
+    $(function()
+    {
+        setTimeout(function()
+        {
+            if(('#containerLogin').length)
+            {
+                $(document.getElementById("containerLogin")).remove();
+            }
+
+        })
+    });
+}
+
 //Funcion que muestra el inicio/noticias del software y de la semana
 function InicioNoticias()
 {
@@ -267,12 +297,107 @@ function AccesoCompras()
 function AccesoInicioSesion()
 {
     removedor();
-    let textoh1 = document.createElement('h1');
-    textoh1.innerText = "Bienvenido";
-    textoh1.setAttribute('Id', 'inicio');
-    textoh1.setAttribute('class', 'Titulo');
-    document.body.appendChild(textoh1);
+    if(('#containerLogin').length)
+    {
+        $(document.getElementById("containerLogin")).remove();
+    }
+    let ContainerLogin = document.createElement('div');
+    ContainerLogin.setAttribute('id', 'containerLogin');
+
+    let formulario = document.createElement('form');
+    formulario.setAttribute('action', 'index.html');
+    formulario.setAttribute('id', 'forma');
+    formulario.setAttribute('class', 'tarjetaInicioSesion');
+
+    let Nombre = document.createElement('input');
+    Nombre.setAttribute('type', 'text');
+    Nombre.setAttribute('id', 'username');
+
+    let Password = document.createElement('input');
+    Password.setAttribute('type', 'password');
+    Password.setAttribute('id', 'contrasenia_cliente');
+    Password.setAttribute('autocomplete', 'current-password');
+
+    let boton_Iniciar = document.createElement('input');
+    boton_Iniciar.setAttribute('type', 'submit');
+    boton_Iniciar.setAttribute('value', 'Iniciar Sesion');
+
+    let boton_Registrar = document.createElement('button');
+    boton_Registrar.setAttribute('onclick', 'AccesoRegistroNuevo()');
+    boton_Registrar.setAttribute('id', 'inicio');
+    boton_Registrar.innerText = "Registrarse";
+
+    formulario.appendChild(Nombre);
+    formulario.appendChild(Password);
+    formulario.appendChild(boton_Iniciar);
+    formulario.appendChild(boton_Registrar);
+    ContainerLogin.appendChild(formulario);
+    document.body.appendChild(ContainerLogin);
+
+    //Iniciar session - Boton
+    $(document).ready(function()
+    {
+        $('#forma').submit(function(){
+            let nombre = $('#username').val();
+            let contrasenia = $('#contrasenia_cliente').val();
+            $.ajax({
+                url: 'Clientes/Iniciar_sesion.php',
+                type: 'POST',
+                data: { search: [nombre, contrasenia]},
+                success: function( response ){
+                    try {
+
+                        /* Si el JSON está mal formado se generará una excepción */
+                        let info = JSON.parse(response);
+                        if (info.error == true) {
+                        /* Si hemos enviado por JSON un error, lo notificamos */
+                        console.log('ERROR detectado:', info);
+                        return;
+                        }
+
+                        //  Trabajamos habitualmente con la respuesta
+                        let template = '';
+                        info.forEach(task => {
+                            if(task.ref == 0)//Correo
+                            {
+                                console.log(response);
+                                template += `<li>
+                                Nombre: ${task.nombre}
+                                </li>`
+                            }
+                            if(task.ref == 1)//Usuario
+                            {
+                                console.log(response);
+                                template += `<li>
+                                Nombre: ${task.nombre}
+                                </li>`
+                            }
+                            if(task.ref == 2)//No existe
+                            {
+                                alert("No existe nada de lo que ingresaste");
+                            }
+                        });
+
+                    } catch {
+                        /* Si el JSON está mal, notificamos su contenido */
+                        console.log('ERROR. Recibido:', response);
+                    }
+                    
+                }
+            })
+        
+        })
+    });
 }
+
+$(document).ready(function(){
+    $('#Login').submit(function(){
+        if(('#containerLogin').length())
+        {
+            $(document.getElementById("containerLogin")).remove();
+        }
+    })
+});
 
 //Funcion para Registrarse
 function AccesoRegistroNuevo()
@@ -285,7 +410,7 @@ function AccesoRegistroNuevo()
 
     //  FORM    //
     let formulario = document.createElement('form');
-    formulario.setAttribute('action', '#');
+    //formulario.setAttribute('action', '');
 
     // INPUT - NOMBRE                 //
     let inputName = document.createElement('input');
@@ -305,13 +430,15 @@ function AccesoRegistroNuevo()
     let inputCorreo = document.createElement('input');
     inputCorreo.setAttribute('type', 'text');
     inputCorreo.setAttribute('name', 'correo');     
+    inputCorreo.setAttribute('id', 'correo');
     inputCorreo.setAttribute('class', 'inputForm');
     inputCorreo.setAttribute('placeholder', 'Correo');
 
     // INPUT - CONTRASEÑA             //
     let inputContrasenia = document.createElement('input');
     inputContrasenia.setAttribute('type', 'password');
-    inputContrasenia.setAttribute('name', 'contrasenia');     
+    inputContrasenia.setAttribute('name', 'contrasenia');   
+    inputContrasenia.setAttribute('id', 'contrasenia');  
     inputContrasenia.setAttribute('class', 'inputForm');
     inputContrasenia.setAttribute('placeholder', 'Contraseña');
 
@@ -334,13 +461,45 @@ function AccesoRegistroNuevo()
     Titulo.innerText = "Registro";
     Titulo.setAttribute('class', 'Titulo');
 
+
     $(document).ready(function()
-{
-    $("#registros").click(function()
     {
-        console.log("Estoy registrando paaaaa");
-    });
-})
+        $("#registros").click(function()
+        {
+            let nombre = $('#nombre').val();
+            let apellido = $('#apellido').val();
+            let email = $('#correo').val();
+            let contrasenia = $('#contrasenia').val();
+            $.ajax({
+                url: 'Clientes/Registro.php',
+                type: 'POST',
+                data: { search: [nombre, apellido, email, contrasenia] },
+                success: function( response )
+                {
+                    try {
+
+                        /* Si el JSON está mal formado se generará una excepción */
+                        let info = JSON.parse(response);
+                        if (info.error == true) {
+                        /* Si hemos enviado por JSON un error, lo notificamos */
+                        console.log('ERROR detectado:', info);
+                        return;
+                        }
+
+                        //  Trabajamos habitualmente con la respuesta
+                        console.log(response);
+                        
+                        //console.log(response);
+
+                    } catch {
+                        /* Si el JSON está mal, notificamos su contenido */
+                        console.log('ERROR. Recibido:', response);
+                    }
+                    
+                }
+            })
+        });
+    })
     //  Fundiendo to' //
     formulario.appendChild(inputName);
     formulario.appendChild(inputApellido);    
@@ -354,104 +513,70 @@ function AccesoRegistroNuevo()
     document.body.appendChild(Registro);
 }
 
+
 $(document).ready(function()
 {
-    $("#registro").click(function()
+    let contenedor = document.createElement('div');
+    contenedor.setAttribute('id', 'Close');
+
+    let formulario = document.createElement('form');
+    formulario.setAttribute('action', '#');
+    formulario.setAttribute('id', 'formulario');
+
+    let template = document.createElement('h1');
+    $.ajax({
+        url: 'Clientes/Sesion_iniciada.php',
+        type: 'GET',
+        success: function( response ){
+            let tasks = JSON.parse(response);
+            tasks.forEach(task => {
+               template.innerText =  `Usuario: ${task.nombre}`
+            });
+
+        }
+    })
+
+    let boton_Cerrar = document.createElement('input');
+    boton_Cerrar.setAttribute('type', 'submit');
+    boton_Cerrar.setAttribute('id', 'cerrarSesion');
+    boton_Cerrar.setAttribute('value', 'Cerrar Sesion');
+
+    formulario.appendChild(template);
+    formulario.appendChild(boton_Cerrar);
+    contenedor.appendChild(formulario);
+    document.body.appendChild(contenedor);
+
+    //Cerrar sesion - Boton
+    $(document).ready(function()
     {
-        console.log("Me meti al registro");
-    });
-})
+        $('#formulario').submit(function(){
+            $.ajax({
+                url: 'Clientes/cerrar.php',
+                type: 'GET',
+                success: function( response ){
+                    try {
 
-function Prueba()
-{
-    removedor();
+                        /* Si el JSON está mal formado se generará una excepción */
+                        let info = JSON.parse(response);
+                        if (info.error == true) {
+                        /* Si hemos enviado por JSON un error, lo notificamos */
+                        console.log('ERROR detectado:', info);
+                        return;
+                        }
 
-    $('#inicio').keyup(function(){
-        let resultado = $('#inicio').val();
-        $.ajax({
-            url: 'buscar.php',
-            type: 'POST',
-            data: { resultado },
-            success: function( response ){
-                let producto = JSON.parse(response);
-                let template = ' ';
-                producto.forEach(producto =>{
-                    //$('#nombre').show();
-                    $('#nombre').html(template);
-                });
-            }
-        })
-    });
-}
+                        //  Trabajamos habitualmente con la respuesta
+                        info.forEach(task => { 
+                            alert(task.mensaje);                    
+                        });
+                        removedorBtnCerrar();
 
-
-$(document).ready(function()
-{
-    $('#forma').submit(function(){
-        let nombre = $('#nombre_cliente').val();
-        let contrasenia = $('#contrasenia_cliente').val();
-        $.ajax({
-            url: 'Clientes/Iniciar_sesion.php',
-            type: 'POST',
-            data: { search: [nombre, contrasenia]},
-            success: function( response ){
-                try {
-
-                    /* Si el JSON está mal formado se generará una excepción */
-                    let info = JSON.parse(response);
-                    if (info.error == true) {
-                      /* Si hemos enviado por JSON un error, lo notificamos */
-                      console.log('ERROR detectado:', info);
-                      return;
+                    } catch {
+                        /* Si el JSON está mal, notificamos su contenido */
+                        console.log('ERROR. Recibido:', response);
                     }
-
-                    /* Trabajamos habitualmente con la respuesta 
-                    info.forEach(task => {
-                        if(task.ref == 1)
-                        {
-                            console.log("Ya existe");
-                            console.log(task.nombre);
-                        }
-                        if(task.ref == 0){
-                            console.log("No existe");
-                        }
-                    });*/
                     
-                    console.log(response);
-
-                  } catch {
-                    /* Si el JSON está mal, notificamos su contenido */
-                    console.log('ERROR. Recibido:', response);
-                  }
-            }
+                }
+            })
         })
-    })
+    });
 });
-
-
-
-$(document).ready(function()
-{
-    $('#search').keyup(function(e){
-        let search = $('#search').val();
-        $.ajax({
-            url: 'buscar.php',
-            type: 'POST',
-            data: { search },
-            success: function( response ){
-                let tasks = JSON.parse(response);
-                let template = '';
-                tasks.forEach(task => {
-                    template += `<li>
-                    ${task.nombre_producto}
-                    ${task.existencias}
-                    </li>`
-                });
-                $('#task-result').show();
-                $('#container').html(template);
-            }
-        })
-    })
-});
-
-

@@ -1,26 +1,25 @@
 <?php
     include('Conexion.php');
     
-     $resultados = $_POST['search'];
+    $registro = $_POST['search'];
+    
+    //Nombre - separador
+    $separador = array_slice($registro, 0, 1);
+    $nombre = implode("", $separador);
 
-    if(!empty($resultados))
-    {
-        $query = "SELECT * FROM logins WHERE Nombre LIKE '$resultados%'";
-        $result = mysqli_query($connection, $query);
-        if(!$result){
-            die('Query Error '.mysqli_error($connection));
-        }
-        $json = array();
-        while($row = mysqli_fetch_array($result)){
-            $json[] = array(
-                'id_cliente' => $row["ID_Cliente"],
-                'nombre' => $row["Nombre"],
-                'apellido' => $row["Apellido"],
-                'correo' => $row["Correo"],
-                'contrasenia' => $row["Contrasenia"]
-            );
-        }
-        $jsonstring = json_encode($json);
-        echo $jsonstring;
-    }
+    //Apellido - separador
+    $separador = array_slice($registro, 1, 1);
+    $apellido = implode("", $separador);
+
+    //Correo - separador
+    $separador = array_slice($registro, 2, 1);
+    $correo = implode("", $separador);
+    //Contraseña - separador
+    $separador = array_slice($registro, 3, 1);
+    $contrasenia = implode("", $separador);
+    //Sentencia
+    $query = "INSERT INTO `logins`(`Nombre`, `Apellido`, `Correo`, `Contrasenia`) VALUES ('$nombre','$apellido','$correo','$contrasenia')";
+    $result = mysqli_query($connection, $query);
+
+    echo $mensaje;
 ?>

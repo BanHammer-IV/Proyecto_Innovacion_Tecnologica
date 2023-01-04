@@ -1,0 +1,160 @@
+$(document).ready(function()
+{
+    $('#revision').submit(function(){
+        $.ajax({
+            url: 'Clientes/prueba2.php',
+            type: 'GET',
+            success: function( response ){
+                try {
+
+                    /* Si el JSON está mal formado se generará una excepción */
+                    let info = JSON.parse(response);
+                    if (info.error == true) {
+                      /* Si hemos enviado por JSON un error, lo notificamos */
+                      console.log('ERROR detectado:', info);
+                      return;
+                    }
+
+                    //  Trabajamos habitualmente con la respuesta
+                    let template = '';
+                    info.forEach(task => { 
+                        console.log(response);                    
+                        template += `<li>
+                        Nombre: ${task.nombre}
+                        </li>`
+                    });
+                    $('#task-result').show();
+                    $('#container').html(template);
+
+                  } catch {
+                    /* Si el JSON está mal, notificamos su contenido */
+                    console.log('ERROR. Recibido:', response);
+                  }
+                  
+            }
+        })
+       
+    })
+});
+
+$(document).ready(function()
+{
+    $('#status').submit(function(){
+        $.ajax({
+            url: 'Clientes/pruebaSes.php',
+            type: 'GET',
+            success: function( response ){
+                try {
+
+                    /* Si el JSON está mal formado se generará una excepción */
+                    let info = JSON.parse(response);
+                    if (info.error == true) {
+                      /* Si hemos enviado por JSON un error, lo notificamos */
+                      console.log('ERROR detectado:', info);
+                      return;
+                    }
+
+                    //  Trabajamos habitualmente con la respuesta
+                    let template = '';
+                    info.forEach(task => { 
+                        console.log(response);                    
+                        template += `<li>
+                        Nombre: ${task.nombre}
+                        </li>`
+                    });
+                    $('#task-result').show();
+                    $('#container').html(template);
+
+                  } catch {
+                    /* Si el JSON está mal, notificamos su contenido */
+                    console.log('ERROR. Recibido:', response);
+                  }
+                  
+            }
+        })
+       
+    })
+});
+
+
+//Iniciar session - Boton
+$(document).ready(function()
+{
+    $('#forma').submit(function(){
+        let nombre = $('#nombre_cliente').val();
+        let contrasenia = $('#contrasenia_cliente').val();
+        $.ajax({
+            url: 'Clientes/Iniciar_sesion.php',
+            type: 'POST',
+            data: { search: [nombre, contrasenia]},
+            success: function( response ){
+                try {
+
+                    /* Si el JSON está mal formado se generará una excepción */
+                    let info = JSON.parse(response);
+                    if (info.error == true) {
+                      /* Si hemos enviado por JSON un error, lo notificamos */
+                      console.log('ERROR detectado:', info);
+                      return;
+                    }
+
+                    //  Trabajamos habitualmente con la respuesta
+                    let template = '';
+                    info.forEach(task => {
+                        if(task.ref == 0)//Correo
+                        {
+                            console.log(response);
+                            template += `<li>
+                            Nombre: ${task.nombre}
+                            </li>`
+                        }
+                        if(task.ref == 1)//Usuario
+                        {
+                            console.log(response);
+                            template += `<li>
+                            Nombre: ${task.nombre}
+                            </li>`
+                        }
+                        if(task.ref == 2)//No existe
+                        {
+                           alert("No existe nada de lo que ingresaste");
+                        }
+                        
+                    });
+                    $('#task-result').show();
+                    $('#container').html(template);
+                    //console.log(response);
+
+                  } catch {
+                    /* Si el JSON está mal, notificamos su contenido */
+                    console.log('ERROR. Recibido:', response);
+                  }
+                  
+            }
+        })
+       
+    })
+});
+
+
+function Prueba()
+{
+    removedor();
+
+    $('#inicio').keyup(function(){
+        let resultado = $('#inicio').val();
+        $.ajax({
+            url: 'buscar.php',
+            type: 'POST',
+            data: { resultado },
+            success: function( response ){
+                let producto = JSON.parse(response);
+                let template = ' ';
+                producto.forEach(producto =>{
+                    //$('#nombre').show();
+                    $('#nombre').html(template);
+                });
+            }
+        })
+    });
+}
