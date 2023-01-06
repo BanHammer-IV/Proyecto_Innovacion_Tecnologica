@@ -2,13 +2,27 @@ function removedor()
 {
     //Funcion que borra lo que se esta mostrando
     //actualmente en la pagina
-    $(function()
+    if(("#inicio").length)
     {
-        setTimeout(function()
+        $(function()
         {
-            $(document.getElementById("inicio")).remove();
-        })
-    });
+            setTimeout(function()
+            {
+                $(document.getElementById("inicio")).remove();
+            })
+        });
+    }
+
+    if(('#containerLogin').length)
+    {
+        $(function()
+        {
+            setTimeout(function()
+            {
+                $(document.getElementById("containerLogin")).remove();
+            })
+        });
+    }
 }
 
 function removedorBtnCerrar()
@@ -297,10 +311,7 @@ function AccesoCompras()
 function AccesoInicioSesion()
 {
     removedor();
-    if(('#containerLogin').length)
-    {
-        $(document.getElementById("containerLogin")).remove();
-    }
+
     let ContainerLogin = document.createElement('div');
     ContainerLogin.setAttribute('id', 'containerLogin');
 
@@ -324,7 +335,7 @@ function AccesoInicioSesion()
 
     let boton_Registrar = document.createElement('button');
     boton_Registrar.setAttribute('onclick', 'AccesoRegistroNuevo()');
-    boton_Registrar.setAttribute('id', 'inicio');
+    boton_Registrar.setAttribute('id', 'register');
     boton_Registrar.innerText = "Registrarse";
 
     formulario.appendChild(Nombre);
@@ -513,7 +524,7 @@ function AccesoRegistroNuevo()
     document.body.appendChild(Registro);
 }
 
-
+//Metodo cerrado de Sesion
 $(document).ready(function()
 {
     let contenedor = document.createElement('div');
