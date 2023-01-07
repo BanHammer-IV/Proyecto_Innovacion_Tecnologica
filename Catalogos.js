@@ -421,12 +421,12 @@ function AccesoRegistroNuevo()
 
     //  FORM    //
     let formulario = document.createElement('form');
-    //formulario.setAttribute('action', '');
+    formulario.setAttribute('action', '#');
 
     // INPUT - NOMBRE                 //
     let inputName = document.createElement('input');
     inputName.setAttribute('type', 'text');
-    inputName.setAttribute('id', 'nombre');   
+    inputName.setAttribute('id', 'nombre');
     inputName.setAttribute('class', 'inputForm');
     inputName.setAttribute('placeholder', 'Nombre');
 

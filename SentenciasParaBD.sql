@@ -25,10 +25,11 @@ ID_Producto int not null,
 Nombre_Producto VARCHAR(50) not null, 
 Existencias INT null, 
 Precio FLOAT not null,
-ID_Proveedor int FOREIGN KEY  REFERENCES Proveedores (ID_Proveedor),
+ID_Proveedor int REFERENCES Proveedores (ID_Proveedor),
 PRIMARY KEY (ID_Producto),
 Descripcion VARCHAR (50)
 );
+
 INSERT INTO Productos VALUES (1,'Nito',35,18.00,1,'62 grs');
 INSERT INTO Productos VALUES (2,'Chiles chipotles adobados',20,22.00,2,'Lata de 220 g');
 INSERT INTO Productos VALUES (3,'Panque con pasas',26,23,1,'180 grs');
@@ -99,7 +100,7 @@ INSERT INTO ventas VALUES (6, 3,'18, 28; 16, 2; 21, 3; 26, 3;',06/12/2022, 110.5
 INSERT INTO ventas VALUES (7, 4,'7, 15; 17, 3; 22, 4; 27, 2;',06/12/2022, 416.5);
 INSERT INTO ventas VALUES (8, 4,'2, 10; 18, 4; 23, 9; 28, 5;',06/12/2022, 91.10);
 INSERT INTO ventas VALUES (9, 5,'3, 2; 19, 5; 24, 7; 29, 1;',06/12/2022, 50.5);
-INSERT INTO ventas VALUES (10, 5, '26, 1; 28, 2;', 15.1);
+INSERT INTO ventas VALUES (10, 5, '26, 1; 28, 2;',06/12/2022, 15.1);
 
 /* TABLA COMPRAS */
 CREATE TABLE Compras (
