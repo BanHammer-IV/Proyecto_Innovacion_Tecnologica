@@ -1,3 +1,175 @@
+//Eject Functions
+document.getElementById("btn__login").addEventListener("click", Login);
+document.getElementById("btn__register").addEventListener("click", Register);
+window.addEventListener("resize", anchoPage);
+
+//Declarando variables
+var form_login = document.querySelector(".form__login");
+var form_register = document.querySelector(".form__register");
+var containter_login_register = document.querySelector(".container__login-register");
+var base_box_login = document.querySelector(".box__base-login");
+var base_box_register = document.querySelector(".box__base-register");
+
+//Function
+function anchoPage(){
+    if(window.innerWidth > 850){
+        base_box_register.style.display = "block";
+        base_box_login.style.display = "block";
+    } else {
+        base_box_register.style.display = "block";
+        base_box_register.style.opacity = "1";
+        base_box_login.style.display = "none";
+        form_login.style.display = "block";
+        containter_login_register.style.left = "0px";
+        form_register.style.display = "none";
+    }
+}
+
+anchoPage();
+
+function Login(){
+    if(window.innerWidth > 850){
+        form_login.style.display = "block";
+        containter_login_register.style.left = "10px";
+        form_register.style.display = "none";
+        base_box_register.style.opacity = "1";
+        base_box_login.style.opacity = "0";
+    } else {
+        form_login.style.display = "block";
+        containter_login_register.style.left = "0px";
+        form_register.style.display = "none";
+        base_box_register.style.display = "block";
+        base_box_login.style.display = "none";
+    }
+
+/*    let form = document.createElement('form');
+    form.setAttribute('action', '#');
+    form.setAttribute('class', 'form__register');
+    form.setAttribute('id', 'register');
+
+    let title = document.createElement('h2');
+    title.innerText = "Registrarse";
+
+    let input_First_Name = document.createElement('input');
+    input_First_Name.setAttribute('type', 'text');
+    input_First_Name.setAttribute('id', 'nombre');
+    input_First_Name.setAttribute('placeholder', 'Nombre');
+
+    let input_Last_Name = document.createElement('input');
+    input_Last_Name.setAttribute('type', 'text');
+    input_Last_Name.setAttribute('id', 'apellido');
+    input_Last_Name.setAttribute('placeholder', 'Apellido');
+    
+    let input_Email = document.createElement('input');
+    input_Email.setAttribute('type', 'text');
+    input_Email.setAttribute('id', 'correo');
+    input_Email.setAttribute('placeholder', 'Email');
+
+    let input_Password = document.createElement('input');
+    input_Password.setAttribute('type', 'text');
+    input_Password.setAttribute('id', 'contrasenia');
+    input_Password.setAttribute('placeholder', 'Password');
+
+    let input_Boton = document.createElement('input');
+    input_Boton.setAttribute('type', 'submit');
+    input_Boton.setAttribute('value', 'Regsitrarse');
+    input_Boton.setAttribute('onclick', 'NewRegister()');
+
+
+    form.appendChild(title);
+    form.appendChild(input_First_Name);
+    form.appendChild(input_Last_Name);
+    form.appendChild(input_Email);
+    form.appendChild(input_Password);
+    form.appendChild(input_Boton);
+    $('container_Login').html(form);*/
+}
+
+function Register(){
+    if(window.innerWidth > 850){
+        form_register.style.display = "block";
+        containter_login_register.style.left = "410px";
+        form_login.style.display = "none";
+        base_box_register.style.opacity = "0";
+        base_box_login.style.opacity = "1";
+    } else {
+        form_register.style.display = "block";
+        containter_login_register.style.left = "0px";
+        form_login.style.display = "none";
+        base_box_register.style.display = "block";
+        base_box_login.style.opacity = "1";
+    }
+}
+
+function redireccion(){
+    $(document).ready(function(){
+        $('#register').click(function(){
+            window.location = "users/Principal.html";
+        });
+    });
+    
+}
+
+function Loger(){
+    
+
+    $(document).ready(function()
+    {
+        $('#forma').submit(function(){
+            let nombre = $('#username').val();
+            let contrasenia = $('#password').val();
+            $.ajax({
+                url: 'Clientes/Iniciar_sesion.php',
+                type: 'POST',
+                data: { search: [nombre, contrasenia]},
+                success: function( response ){
+                    try {
+
+                        /* Si el JSON está mal formado se generará una excepción */
+                        let info = JSON.parse(response);
+                        if (info.error == true) {
+                        /* Si hemos enviado por JSON un error, lo notificamos */
+                        console.log('ERROR detectado:', info);
+                        return;
+                        }
+
+                        //  Trabajamos habitualmente con la respuesta
+                        let template = '';
+                        info.forEach(task => {
+                            if(task.ref == 0)//Correo
+                            {
+                                console.log(response);
+                                template += `<li>
+                                Nombre: ${task.nombre}
+                                </li>`
+                            }
+                            if(task.ref == 1)//Usuario
+                            {
+                                console.log(response);
+                                template += `<li>
+                                Nombre: ${task.nombre}
+                                </li>`
+                            }
+                            if(task.ref == 2)//No existe
+                            {
+                                alert("No existe nada de lo que ingresaste");
+                            }
+                        });
+
+                    } catch {
+                        /* Si el JSON está mal, notificamos su contenido */
+                        console.log('ERROR. Recibido:', response);
+                    }
+                    
+                }
+            })
+        
+        })
+    });
+}
+
+
+
 function removedor()
 {
     //Funcion que borra lo que se esta mostrando
@@ -13,16 +185,7 @@ function removedor()
         });
     }
 
-    if(('#containerLogin').length)
-    {
-        $(function()
-        {
-            setTimeout(function()
-            {
-                $(document.getElementById("containerLogin")).remove();
-            })
-        });
-    }
+
 }
 
 function removedorBtnCerrar()
@@ -33,7 +196,7 @@ function removedorBtnCerrar()
     {
         setTimeout(function()
         {
-            $(document.getElementById("Close")).remove();
+            $(document.getElementById("infoClient")).remove();
         })
     });
 }
@@ -118,7 +281,7 @@ $(document).ready(function()
         Titulo.innerText = "Catalogo de productos\n";
         Titulo.setAttribute('class', 'Titulo');
 
-        $.get(
+        $.ajax(
         {
             url: 'Productos/Consulta.php',
             type: 'GET',
@@ -258,45 +421,60 @@ $(document).ready(function()
         Titulo.innerText = "Compras\n";
         Titulo.setAttribute('class', 'Titulo');
 
-        $.get(
+        $.ajax(
         {
             url: 'Compras/Consulta.php',
             type: 'GET',
             success: function( response )
             {
-                let tasks = JSON.parse(response);
-                tasks.forEach(task => {
-                    // DIV - Barra de Ventas
-                    let Barra_Compra = document.createElement('div');
-                    Barra_Compra.setAttribute('class', 'barraVenta');
-                    
-                    // DIV - Texto de Relleno
-                    let TextoRelleno = document.createElement('div');
-                    TextoRelleno.setAttribute('class', 'TxtInterno');
-                    TextoRelleno.innerText = "\nCompra no.: "+task.id_compra+"\nVendedor: "+task.id_vendedor;
+                try {
 
-                    // DIV - Texto de Relleno
-                    let TextoTotal = document.createElement('div');
-                    TextoTotal.setAttribute('class', 'TxtInterno');
-                    TextoTotal.innerText = "Total de la compra: "+task.total_compra+"\n";
+                    /* Si el JSON está mal formado se generará una excepción */
+                    let info = JSON.parse(response);
+                    if (info.error == true) {
+                    /* Si hemos enviado por JSON un error, lo notificamos */
+                    console.log('ERROR detectado:', info);
+                    return;
+                    }
 
-                    //Separacion( Este apartado es meramente decorativo )
-                    let Separador = document.createElement('hr');
+                    info.forEach(task => {
+                        // DIV - Barra de Ventas
+                        let Barra_Compra = document.createElement('div');
+                        Barra_Compra.setAttribute('class', 'barraVenta');
+                        
+                        // DIV - Texto de Relleno
+                        let TextoRelleno = document.createElement('div');
+                        TextoRelleno.setAttribute('class', 'TxtInterno');
+                        TextoRelleno.innerText = "\nCompra no.: "+task.id_compra+"\nVendedor: "+task.id_vendedor;
+    
+                        // DIV - Texto de Relleno
+                        let TextoTotal = document.createElement('div');
+                        TextoTotal.setAttribute('class', 'TxtInterno');
+                        TextoTotal.innerText = "Total de la compra: "+task.total_compra+"\n";
+    
+                        //Separacion( Este apartado es meramente decorativo )
+                        let Separador = document.createElement('hr');
+    
+                        // BOTON - Revisar
+                        let BotonRevisarCompra = document.createElement('Button');
+                        BotonRevisarCompra.setAttribute('class', 'BtnRevisarVenta');
+                        BotonRevisarCompra.innerText = "Revisar";
+    
+                        Barra_Compra.appendChild(TextoRelleno);
+                        Barra_Compra.appendChild(Separador);
+                        Barra_Compra.appendChild(TextoTotal);
+                        Barra_Compra.appendChild(BotonRevisarCompra);
+                        Contenedor.appendChild(Barra_Compra);
+                    });
+                    ContenedorGeneral.appendChild(Titulo);
+                    ContenedorGeneral.appendChild(Contenedor);
+                    document.body.appendChild(ContenedorGeneral);
 
-                    // BOTON - Revisar
-                    let BotonRevisarCompra = document.createElement('Button');
-                    BotonRevisarCompra.setAttribute('class', 'BtnRevisarVenta');
-                    BotonRevisarCompra.innerText = "Revisar";
 
-                    Barra_Compra.appendChild(TextoRelleno);
-                    Barra_Compra.appendChild(Separador);
-                    Barra_Compra.appendChild(TextoTotal);
-                    Barra_Compra.appendChild(BotonRevisarCompra);
-                    Contenedor.appendChild(Barra_Compra);
-                });
-                ContenedorGeneral.appendChild(Titulo);
-                ContenedorGeneral.appendChild(Contenedor);
-                document.body.appendChild(ContenedorGeneral);
+                } catch {
+                    /* Si el JSON está mal, notificamos su contenido */
+                    console.log('ERROR. Recibido:', response);
+                }            
             }
         })
     })
@@ -312,8 +490,9 @@ function AccesoInicioSesion()
 {
     removedor();
 
+
     let ContainerLogin = document.createElement('div');
-    ContainerLogin.setAttribute('id', 'containerLogin');
+    ContainerLogin.setAttribute('id', 'inicio');
 
     let formulario = document.createElement('form');
     formulario.setAttribute('action', 'index.html');
@@ -401,14 +580,7 @@ function AccesoInicioSesion()
     });
 }
 
-$(document).ready(function(){
-    $('#Login').submit(function(){
-        if(('#containerLogin').length())
-        {
-            $(document.getElementById("containerLogin")).remove();
-        }
-    })
-});
+
 
 //Funcion para Registrarse
 function AccesoRegistroNuevo()
@@ -523,27 +695,41 @@ function AccesoRegistroNuevo()
 
     document.body.appendChild(Registro);
 }
-
+/*
 //Metodo cerrado de Sesion
 $(document).ready(function()
 {
-    let contenedor = document.createElement('div');
-    contenedor.setAttribute('id', 'Close');
 
     let formulario = document.createElement('form');
     formulario.setAttribute('action', '#');
     formulario.setAttribute('id', 'formulario');
 
-    let template = document.createElement('h1');
+    let template = '';
+    let texto = document.createElement('h2');
     $.ajax({
         url: 'Clientes/Sesion_iniciada.php',
         type: 'GET',
         success: function( response ){
-            let tasks = JSON.parse(response);
-            tasks.forEach(task => {
-               template.innerText =  `Usuario: ${task.nombre}`
-            });
+            try {
 
+                /* Si el JSON está mal formado se generará una excepción /
+                let info = JSON.parse(response);
+                if (info.error == true) {
+                /* Si hemos enviado por JSON un error, lo notificamos /
+                console.log('ERROR detectado:', info);
+                return;
+                }
+
+                //  Trabajamos habitualmente con la respuesta
+                info.forEach(task => {
+                    template = task.nombre
+                 });
+
+            } catch {
+                /* Si el JSON está mal, notificamos su contenido /
+                console.log('ERROR. Recibido:', response);
+            }
+            texto.innerText = "Usuario: " + template;
         }
     })
 
@@ -551,26 +737,29 @@ $(document).ready(function()
     boton_Cerrar.setAttribute('type', 'submit');
     boton_Cerrar.setAttribute('id', 'cerrarSesion');
     boton_Cerrar.setAttribute('value', 'Cerrar Sesion');
-
-    formulario.appendChild(template);
+    
+    formulario.appendChild(texto);
     formulario.appendChild(boton_Cerrar);
-    contenedor.appendChild(formulario);
-    document.body.appendChild(contenedor);
-
+    document.body.appendChild(formulario);
+    $('#infoClient').html(formulario);
     //Cerrar sesion - Boton
     $(document).ready(function()
     {
         $('#formulario').submit(function(){
+            if(("#infoClient").length)
+            {
+                 $(document.getElementById("formulario")).remove();
+            }
             $.ajax({
                 url: 'Clientes/cerrar.php',
                 type: 'GET',
                 success: function( response ){
                     try {
 
-                        /* Si el JSON está mal formado se generará una excepción */
+                        /* Si el JSON está mal formado se generará una excepción /
                         let info = JSON.parse(response);
                         if (info.error == true) {
-                        /* Si hemos enviado por JSON un error, lo notificamos */
+                        /* Si hemos enviado por JSON un error, lo notificamos /
                         console.log('ERROR detectado:', info);
                         return;
                         }
@@ -579,10 +768,8 @@ $(document).ready(function()
                         info.forEach(task => { 
                             alert(task.mensaje);                    
                         });
-                        removedorBtnCerrar();
-
                     } catch {
-                        /* Si el JSON está mal, notificamos su contenido */
+                        /* Si el JSON está mal, notificamos su contenido /
                         console.log('ERROR. Recibido:', response);
                     }
                     
@@ -591,3 +778,4 @@ $(document).ready(function()
         })
     });
 });
+*/

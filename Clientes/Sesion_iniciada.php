@@ -1,12 +1,23 @@
 <?php
     session_start();
+    include("Conexion.php");
 
     if(isset($_SESSION["Cliente"]))
     {
-        $json[] = array(
-            'ref' => session_status(),
-            'nombre' => $_SESSION["Cliente"]
-        );
+        $identificador = $_SESSION["Cliente"];
+
+        $query = "SELECT * FROM logins WHERE ID_Cliente = $identificador";
+        $result = mysqli_query($connection, $query);
+        if(!$result){
+            die('Query Error '.mysqli_error($connection));
+        }
+        while($row = mysqli_fetch_array($result))
+        {
+           $json[] = array(
+            'nombre' => $row["Nombre"]
+            ); 
+        }
+        
     }
     else{
         $json[] = array(

@@ -1,216 +1,168 @@
 *{
     margin: 0px;
     padding: 0px;
-    font-family: Arial, Helvetica, sans-serif;
+    box-sizing: border-box;
+    text-decoration: none;
+    font-family: 'Roboto', sans-serif;
 }
 
 body{
-    background-color: #65A6EB;
+    background-image: url("../Images/market.jpg");
+    background-size: cover;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-attachment: fixed;
 }
 
-.cabecera
-{
-    width: 90%;
-    height: 64px;
-    background-color: #002570;
-    margin-top: 20px;
-    margin-left: 5%;
-    border-radius: 16px;
-    text-align: center;
+main{
+    width: 100%;
+    padding: 20px;
+    margin: auto;
+    margin-top: 100px;
 }
 
-.IcoShop
-{
-    width: 50px;
-    height: 80px;
-    
+.container__General{
+    width: 100%;
+    padding: 20px;
+    max-width: 800px;
+    margin: auto;
+    position: relative;
 }
 
-.btnCabecera
-{
-    width: 100px;
-    height: 48px;
-    margin-left: 10px;
-    margin-right: 10px;
-    margin-top: 8px;
+.box__base{
+    width: 100%;
+    padding: 10px 20px;
+    display: flex;
+    justify-content: center;
+    -webkit-backdrop-filter: blur(10px);
+    backdrop-filter: blur(10px);
+    background-color: rgba(0,128,255 ,0.5);
 }
 
-.recuadroIzq
-{
-    width: 42%;
-    height: 100%;
-    margin-top: 20px;
-    margin-left: 5%;
-    border-radius: 10px;
-    text-align: justify;
-    background-color: aliceblue;
+.box__base div{
+    margin: 100px 40px;
+    color: white;
+    transition: all 500ms;
 }
 
-.recuadroDer
-{
-    width: 42%;
-    height: 100%;
-    margin-top: -100px;
-    margin-left: 52%;
-    border-radius: 10px;
-    text-align: justify;
-    background-color: aliceblue;
-}
-
-.texto
-{
-    margin: 20px;
-}
-
-.columnas
-{
-    display: grid;
-    grid-template-columns: auto auto auto auto auto auto auto;
-    width: 95%;
-    margin-left: 30px;
-    margin-right: 30px;
-}
-
-.Titulo
-{
-    text-align: center;
-    margin-top: 20px;
-} 
-
-.Tarjeta_Registro{
-    width: 350px;
-    height: 100%;
-    margin-left: 35%;
-    margin-top: 50px;
-    margin-bottom: 20px;
-    background-color: #96C5F8;
-    border-radius: 10px;
-    border-color: #032850;
-    border-style: solid;
-}
-
-.inputForm
-{
-    background-color: #76b4f7;
-    border-style: solid;
-    border-bottom: solid;
+.box__base div p,
+.box__base button{
     margin-top: 30px;
-    margin-left: 6%;
-    border-top-color: transparent;
-    border-left: transparent;
-    border-right: transparent;
-    border-bottom-color: #002042;
-    border-top-left-radius: 4px;
-    border-top-right-radius: 4px;
-    width: 310px;
-    height: 30px;
-    font-size: large;
 }
 
-.inputForm::placeholder
-{
-    color: #003268;
+.box__base div h3{
+    font-weight: 400;
+    font-size: 26px
 }
 
-.btnRegistro
-{
-    margin-top: 20px;
+.box__base div p{
+    font-size: 16px;
+    font-weight: 300;
+}
+
+.box__base button{
+    padding: 10px 40px;
+    border: 2px solid #fff;
+    font-size: 14px;
+    background: transparent;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
+    transition: all 300ms;    
+}
+
+.box__base button:hover{
+    background-color: #fff;
+    color: #46A2FD;
+}
+
+/*  Formularios   */
+
+.container__login-register{
+    display: flex;
+    align-items: center;
+    width: 100%;
+    max-width: 380px;
+    position: relative;
+    top: -185px;
+    left: 10px;
+
+    transition: left 500ms cubic-bezier(0.175, 0.885, 0.320, 1.275);
+}
+
+.container__login-register form{
+    width: 100%;
+    padding: 80px 20px;
+    background-color: rgb(51, 50, 50);
+    position: absolute;
+    border-radius: 20px;
+}
+
+.container__login-register form h2{
+    font-size: 30px;
+    text-align: center;
     margin-bottom: 20px;
-    margin-left: 225px;
-    font-size: large;
-    background-color: #76b4f7;
-    border-style: solid;
-    border-color: #002042;
-    border-radius: 10px;
-    width: 30%;
-    height: 30px;
+    color:#46A2FD;
 }
 
-.Tarjeta_producto
-{
-    width: 250px;
-    height: 85%;
-    margin-left: 10px;
-    margin-top: 40px;
-    background-color: aliceblue;
-    border-bottom-left-radius: 18px;
-    border-top-right-radius: 18px;
-}
-
-.imagen
-{
-    width: 230px;
-    height: 130px;
-    margin: 10px;
-}
-
-hr{
-    width: 90%;
-    margin-left: 10px;
-}
-
-.descripcion, .nombre{
-    margin: 10px;
-    font-size: large;
-}
-
-.BtnProducto{
-    margin-top: 40px;
-    margin-bottom: 20px;
-    margin-left: 10%;
-    font-size: large;
-    background-color: #76b4f7;
-    border-style: solid;
-    border-color: #002042;
-    border-radius: 10px;
-    width: 80%;
-    height: 30px;
-}
-
-.contenedor{
-    display: grid;
-    grid-template-columns: auto auto auto;
-    margin-left: 10%;
-}
-
-.barraVenta{
-    width: 50%;
-    height: 100%;
-    margin-left: 10%;
-    background-color: #9BDCFB;
-    border-radius: 16px;
-    margin-bottom: 10px;
-   
-}
-
-.barras{
-    margin-top: 50px;
-}
-
-.BtnRevisarVenta{
+.container__login-register form input{
+    width: 100%;
     margin-top: 20px;
-    margin-bottom: 5px;
-    margin-left: 15px;
-    font-size: large;
-    background-color: #76b4f7;
-    border-style: solid;
-    border-color: #002042;
-    border-radius: 10px;
-    width: 95%;
-    height: 30px;
+    padding: 10px;
+    border: none;
+    background: #f2f2f2;
+    font-size: 16px;
+    outline: none;
 }
 
-.TxtInterno{
-    margin-left: 5px;
+.container__login-register form button{
+    padding: 10px 40px;
+    margin-top: 40px;
+    border: none;
+    font-size: 14px;
+    background: #46A2FD;
+    font-weight: 600;
+    cursor: pointer;
+    color: white;
+    outline: none;
 }
 
-.tarjetaInicioSesion{
-    width: 20%;
-    height: 40%;
-    background-color: #2EA3D6;
-    margin-left: 10%;
-    margin-top: 5%;
-    border-style:  solid;
-    border-width: 1px;
-    border-color: #B2E8FF;
+.form__login{
+    opacity: 1;
+    display: block;
+}
+
+.form__register{
+    display: none;
+}
+
+
+@media screen and (max-width: 850px){
+    main{
+        margin-top: 50px;
+    }
+
+    .box__base{
+        max-width: 350px;
+        height: 300px;
+        flex-direction: column;
+        margin: auto;
+    }
+
+    .box__base div{
+        margin: 0px;
+        position: absolute;
+    }
+
+    /* Formularios */
+    .container__login-register{
+        top: -10px;
+        left: -5px;
+        margin: auto;
+    }
+
+    .container__login-register form{
+        position: relative;
+    }
 }

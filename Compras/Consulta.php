@@ -2,12 +2,14 @@
 
     include('conexion.php');
 
-    $query = "SELECT * FROM compras";
+    session_start();
+    $identificador = $_SESSION["Cliente"];
+
+    $query = "SELECT * FROM compras WHERE ID_Vendedor = $identificador";
     $result = mysqli_query($connection, $query);
     if(!$result){
         die('Query Error '.mysqli_error($connection));
     }
-    $json = array();
     while($row = mysqli_fetch_array($result)){
         $json[] = array(
             'id_compra' => $row["ID_Compra"],

@@ -2,7 +2,7 @@
     include('Conexion.php');
     
     $registro = $_POST['search'];
-    
+
     //Nombre - separador
     $separador = array_slice($registro, 0, 1);
     $nombre = implode("", $separador);
@@ -18,7 +18,7 @@
     $separador = array_slice($registro, 3, 1);
     $contrasenia = implode("", $separador);
     //Sentencia
-    $query = "INSERT INTO `logins`(`Nombre`, `Apellido`, `Correo`, `Contrasenia`) VALUES ('$nombre','$apellido','$correo','$contrasenia')";
+    $query = "INSERT INTO `logins`(`Nombre`, `Apellido`, `Correo`, `Contrasenia`, `Permiso`) VALUES ('$nombre','$apellido','$correo','$contrasenia', 'Cliente')";
     $result = mysqli_query($connection, $query);
 
     echo $mensaje;
