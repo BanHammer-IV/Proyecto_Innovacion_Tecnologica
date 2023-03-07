@@ -6,6 +6,7 @@
     $json[] = array(
         "nombre" => "",
         "mensaje" => "Sesion cerrada"
+        header("location:../index.html")
     );
 
     $jsonstring = json_encode($json);

@@ -41,48 +41,6 @@ function Login(){
         base_box_register.style.display = "block";
         base_box_login.style.display = "none";
     }
-
-/*    let form = document.createElement('form');
-    form.setAttribute('action', '#');
-    form.setAttribute('class', 'form__register');
-    form.setAttribute('id', 'register');
-
-    let title = document.createElement('h2');
-    title.innerText = "Registrarse";
-
-    let input_First_Name = document.createElement('input');
-    input_First_Name.setAttribute('type', 'text');
-    input_First_Name.setAttribute('id', 'nombre');
-    input_First_Name.setAttribute('placeholder', 'Nombre');
-
-    let input_Last_Name = document.createElement('input');
-    input_Last_Name.setAttribute('type', 'text');
-    input_Last_Name.setAttribute('id', 'apellido');
-    input_Last_Name.setAttribute('placeholder', 'Apellido');
-    
-    let input_Email = document.createElement('input');
-    input_Email.setAttribute('type', 'text');
-    input_Email.setAttribute('id', 'correo');
-    input_Email.setAttribute('placeholder', 'Email');
-
-    let input_Password = document.createElement('input');
-    input_Password.setAttribute('type', 'text');
-    input_Password.setAttribute('id', 'contrasenia');
-    input_Password.setAttribute('placeholder', 'Password');
-
-    let input_Boton = document.createElement('input');
-    input_Boton.setAttribute('type', 'submit');
-    input_Boton.setAttribute('value', 'Regsitrarse');
-    input_Boton.setAttribute('onclick', 'NewRegister()');
-
-
-    form.appendChild(title);
-    form.appendChild(input_First_Name);
-    form.appendChild(input_Last_Name);
-    form.appendChild(input_Email);
-    form.appendChild(input_Password);
-    form.appendChild(input_Boton);
-    $('container_Login').html(form);*/
 }
 
 function Register(){

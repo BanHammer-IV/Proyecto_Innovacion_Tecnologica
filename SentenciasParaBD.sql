@@ -130,3 +130,14 @@ Apellido VARCHAR(50),
 Correo VARCHAR(150),
 Contrasenia VARCHAR(30)
 )
+
+INSERT INTO inventario VALUES (1, 1, '1, 4; 3, 7; 4, 1; 7, 3', 06/12/2022);
+INSERT INTO inventario VALUES (2, 1,'30, 2; 2, 10; 3, 9;4, 15;',06/12/2022);
+INSERT INTO inventario VALUES (3, 2,'15, 2; 3, 48; 16, 8;4, 10;',06/12/2022);
+INSERT INTO inventario VALUES (4, 2,'12, 11; 10, 9; 8, 7;6, 5;',06/12/2022);
+INSERT INTO inventario VALUES (5, 3,'29, 19; 15, 1; 20, 2; 25, 4;',06/12/2022);
+INSERT INTO inventario VALUES (6, 3,'18, 28; 16, 2; 21, 3; 26, 3;',06/12/2022);
+INSERT INTO inventario VALUES (7, 4,'7, 15; 17, 3; 22, 4; 27, 2;',06/12/2022);
+INSERT INTO inventario VALUES (8, 4,'2, 10; 18, 4; 23, 9; 28, 5;',06/12/2022);
+INSERT INTO inventario VALUES (9, 5,'3, 2; 19, 5; 24, 7; 29, 1;',06/12/2022);
+INSERT INTO inventario VALUES (10, 5, '26, 1; 28, 2;',06/12/2022);

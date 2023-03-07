@@ -31,10 +31,18 @@
     else
     {
         //Query que busca en la tabla logins al usuario
-        $query = "SELECT * FROM logins WHERE Nombre = '$nombre' AND Contrasenia = '$contrasenia'";
+        $query = "SELECT * FROM logins WHERE Nombre = '$username' AND Contrasenia = '$password'";
         $result = mysqli_query($connection, $query);
         if(!$result){
             die('Query Error '.mysqli_error($connection));
+        }
+
+        if(mysqli_num_rows($result) > 0){
+            header("location: ../users/Principal.html");
+            
+            while($row = mysqli_fetch_array($result)){
+                $_SESSION["Cliente"] = $row["ID_Cliente"];
+            }
         }
         
     }

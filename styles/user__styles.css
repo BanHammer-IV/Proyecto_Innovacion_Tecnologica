@@ -12,12 +12,9 @@ body{
     background-repeat: no-repeat;
     background-position: center;
     background-attachment: fixed;
-    -webkit-backdrop-filter: blur(10px);
-    backdrop-filter: blur(10px);
-    background-color: rgba(0,128,255 ,0.5);
     display: grid;
     grid-template-columns: auto auto;
-    grid-row: span 2;
+    grid-row-gap: 10%;
 }
 
 .container__General{
@@ -51,9 +48,14 @@ body{
 
 .container__Info{
     background-color: #6C85EB;
-    width: 20%;
+    width: 700px;
     height: 100%;
-    margin-top: 2%;
+    margin-top: 12px;
+    margin-left: -320px;
     border: solid;
     border-radius: 10px;
+}
+
+h1{
+    text-align: center;
 }
